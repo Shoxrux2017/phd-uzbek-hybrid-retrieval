@@ -1,0 +1,19 @@
+{
+  "package": "phd_research_context_bootstrap_v1",
+  "created": "2026-08-31",
+  "files": [
+    "PROJECT_INSTRUCTIONS.md",
+    "PROJECT_STATE.md",
+    "README.md",
+    "chapters/chapter-1/STATUS.md",
+    "decisions/DECISIONS.md",
+    "literature/DEEP_DIVE_TEMPLATE.md",
+    "literature/MASTER_INDEX.md",
+    "literature/unverified/README.md",
+    "research/CURRENT_GAP.md",
+    "research/GAP_HISTORY.md",
+    "research/OPEN_QUESTIONS.md",
+    "research/RESEARCH_MAP.md"
+  ],
+  "purpose": "Initial GitHub research knowledge base for the PhD project."
+}
