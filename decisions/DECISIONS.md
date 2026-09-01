@@ -89,3 +89,16 @@ Rationale: prevent model cards, preprints, aggregator pages and unverified manus
 **The unverified Scribd “Context-Aware Hybrid BM25–BERT Retrieval for Uzbek Legal Texts” is not citable evidence.**
 
 Rationale: no reliable publisher record/full verified publication has been confirmed. Keep only as a search lead.
+
+## D-016 — 2026-09-01 — ACTIVE
+**Для текста диссертации принят Russian-first terminology policy, определённый в `decisions/TERMINOLOGY_GUIDE.md`.**
+
+Rationale:
+
+- основной научный текст должен оставаться русскоязычным;
+- английский оригинал специализированного термина вводится при необходимости для точности и идентификации;
+- далее преимущественно используется согласованная русская форма или общепринятая аббревиатура;
+- официальные названия моделей, алгоритмов, методов и ресурсов не переводятся, если перевод может исказить или затруднить их идентификацию;
+- решение основано на анализе практики реальных русскоязычных диссертаций по информационному поиску, NLP и векторной семантике.
+
+Термины, отмеченные в `decisions/TERMINOLOGY_GUIDE.md` как pending или требующие отдельного согласования, нельзя самостоятельно стандартизировать.
