@@ -1,6 +1,6 @@
 # Literature Master Index
 
-**Status:** initial master index created from research completed up to 2026-08-31.  
+**Status:** working master index updated through 2026-09-02.  
 This is not the final bibliography. It is a research navigation index.
 
 Legend:
@@ -48,7 +48,8 @@ Legend:
 
 | ID | Work | Year | Reliability | Priority | What it contributes |
 |---|---|---:|---|---|---|
-| MORPH-001 | Can et al. — *Information Retrieval on Turkish Texts* (JASIST) | 2008 | A | CRITICAL | Large Turkic/agglutinative IR stemming comparison |
+| MORPH-001 | Can et al. — *Information Retrieval on Turkish Texts* (JASIST) — [deep dive](deep-dives/2008_Can_Information_Retrieval_on_Turkish_Texts.md) | 2008 | A | CRITICAL | Deep dive completed 2026-09-02. Large Turkic/agglutinative IR study: morphology improves lexical retrieval in the tested setting; query length changes the observed stemming effect; elaborate lemmatization does not guarantee superiority; **BM25, semantic and hybrid retrieval were not evaluated**. |
+| MORPH-002 | Haddad & Bechikh Ali — *Performance of Turkish Information Retrieval: Evaluating the Impact of Linguistic Parameters and Compound Nouns* (CICLing/LNCS) | 2014 | B/A- | VERY HIGH | Verified follow-up lead on the Milliyet collection: TF-IDF, BM25 and language model with truncation, Snowball/Zemberek stemming, stop words and compound nouns. Directly relevant to the historical BM25 omission in Can et al.; deep dive pending. |
 | MORPH-UZ-001 | Bakaev & Shafiev — full-text search with morphology | 2020 | B | HIGH | Direct Uzbek morphology/search link |
 | MORPH-UZ-002 | Bakaev PhD | 2021 | A | CRITICAL | Uzbek morphological analyzer and search applications |
 | MORPH-UZ-003 | Xusainova — lemmatization for Uzbek National Corpus search | 2023 | B/A- | HIGH | Lemmatization/search optimization |
@@ -134,6 +135,13 @@ Legend:
 
 # Deep-dive order recommended
 
+## Completed deep dives
+
+- **MORPH-001 — Can et al. (2008), *Information Retrieval on Turkish Texts*.** Deep dive completed 2026-09-02: [card](deep-dives/2008_Can_Information_Retrieval_on_Turkish_Texts.md).
+  - Main retained conclusion: do not assume `lemma > stem > raw` for Uzbek retrieval; measure it.
+  - Query length already interacts with the effect of morphological normalization in lexical IR.
+  - The paper does not test BM25, semantic retrieval or hybrid retrieval, so it does not close the current Uzbek lexical–semantic gap.
+
 ## Critical first wave
 
 1. UZ-HYB-001 — USHRA
@@ -158,6 +166,7 @@ Legend:
 - Contriever
 - EntityQuestions
 - Bruch fusion analysis
+- Haddad & Bechikh Ali (2014) — Turkish morphology + BM25 follow-up
 - SIGTURK Uzbek retrieval
 - BERTbek / SimRelUz / UZWORDNET.
 

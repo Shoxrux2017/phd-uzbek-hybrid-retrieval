@@ -1,7 +1,7 @@
 # Research Map
 
 **Purpose:** сквозная карта того, что уже изучено и как отдельные линии связаны с текущей PhD.  
-**Evidence cut-off:** 2026-08-31.
+**Evidence cut-off:** 2026-09-02.
 
 ---
 
@@ -130,20 +130,80 @@ DeepImpact, SPLADE и related work показывают:
 
 ## 3.1 Turkic comparative evidence
 
-Can et al., Turkish IR (JASIST, 2008):
+### Can et al. — *Information Retrieval on Turkish Texts* (JASIST, 2008)
 
-- 408,305 documents;
-- 72 ad-hoc queries;
-- сравнение stemming strategies;
-- morphology matters for IR, но более сложный lemmatizer не гарантирует automatic superiority.
+**Deep dive:** completed 2026-09-02.  
+**Card:** [`literature/deep-dives/2008_Can_Information_Retrieval_on_Turkish_Texts.md`](../literature/deep-dives/2008_Can_Information_Retrieval_on_Turkish_Texts.md)
 
-### Consequence
+Experimental setting:
+
+- 408,305 Turkish newspaper documents (Milliyet, 2001–2005);
+- approximately 95.5 million tokens before stop-word removal;
+- 72 ad-hoc queries after filtering;
+- 33 native-speaker assessors;
+- binary relevance judgments built with pooling;
+- pool construction used 24 runs: 8 matching functions × NS/F6/SV;
+- evaluation included `bpref`, MAP and precision at fixed cutoffs;
+- eight vector-space query–document matching functions were tested.
+
+Morphological variants:
+
+- **NS** — no stemming;
+- **F3–F7** — fixed-prefix truncation;
+- **SV** — successor-variety statistical stemming;
+- **LM5/LM6** — lemmatizer-based variants;
+- **LV** — LM5 with SV fallback for words not analyzed by the lemmatizer.
+
+Established results relevant to the current PhD:
+
+- morphological normalization substantially improved lexical retrieval relative to NS in this collection;
+- with the best reported matching function (MF8), `bpref` was 0.3255 for NS, 0.4322 for F5, 0.4304 for SV and 0.4504 for LV;
+- F5, SV and LV were significantly better than NS in the key MF8 comparison (`p < 0.001`);
+- the numerically better LV did **not** show a statistically significant per-query advantage over F5 in the key MF8 comparison; therefore, a more linguistically elaborate lemmatizer does not automatically guarantee better retrieval effectiveness;
+- query length changes the observed effect: moving from short to medium queries significantly improved F5/LV, while longer queries partly compensated for the absence of stemming in NS;
+- stop-word removal did not produce a statistically significant effectiveness gain in the authors' tested ranking setting;
+- normalization greatly reduced vocabulary/posting-list size, so morphology can affect both effectiveness and index efficiency.
+
+Critical limitations:
+
+- the study evaluates Turkish, not Uzbek;
+- the domain is one newspaper collection;
+- **BM25 is not evaluated**;
+- no modern dense semantic retriever is evaluated;
+- no lexical–semantic hybrid retrieval is evaluated;
+- relevance judgments are incomplete and depend on pooling; F5 and LV were not among the systems used to build the original pool;
+- the study does not establish that its optimal prefix lengths or morphology choices transfer to Uzbek.
+
+### Consequence for Uzbek retrieval
 
 Для Uzbek нельзя заранее предполагать:
 
 `lemma BM25 > stem BM25 > raw BM25`.
 
-Это надо измерять.
+Это должно измеряться в контролируемой постановке с одной и той же моделью BM25:
+
+`BM25_raw ↔ BM25_stem ↔ BM25_lemma`.
+
+После этого необходимо отдельно проверить, меняет ли морфологическая нормализация взаимодополняемость с современным семантическим поиском:
+
+`Semantic ↔ BM25_raw + Semantic ↔ BM25_stem + Semantic ↔ BM25_lemma + Semantic`.
+
+Результаты следует анализировать не только в среднем, но и по характеристикам запросов. Can et al. уже дают прямое свидетельство, что **длина запроса** может менять наблюдаемый эффект морфологической обработки в лексическом поиске. Это поддерживает текущий research gap, но не закрывает его.
+
+### Follow-up lead: Haddad & Bechikh Ali (2014)
+
+*Performance of Turkish Information Retrieval: Evaluating the Impact of Linguistic Parameters and Compound Nouns* (CICLing 2014, LNCS 8404, pp. 381–391, DOI `10.1007/978-3-642-54903-8_32`).
+
+Verified at lead level:
+
+- uses the same Milliyet test collection;
+- evaluates TF-IDF, **BM25** and a language model;
+- compares fixed-prefix truncation, Snowball and Zemberek stemming;
+- also studies stop words and compound nouns.
+
+This work directly follows the historical limitation of Can et al. concerning BM25 and should be deep-dived before finalizing claims about morphology-aware BM25 in Turkic-language retrieval.
+
+**Deep dive:** pending.
 
 ## 3.2 Uzbek morphology research
 
