@@ -1,7 +1,7 @@
 # Research Map
 
 **Purpose:** сквозная карта того, что уже изучено и как отдельные линии связаны с текущей PhD.  
-**Evidence cut-off:** 2026-09-02.
+**Evidence cut-off:** 2026-09-04.
 
 ---
 
@@ -190,20 +190,85 @@ Critical limitations:
 
 Результаты следует анализировать не только в среднем, но и по характеристикам запросов. Can et al. уже дают прямое свидетельство, что **длина запроса** может менять наблюдаемый эффект морфологической обработки в лексическом поиске. Это поддерживает текущий research gap, но не закрывает его.
 
-### Follow-up lead: Haddad & Bechikh Ali (2014)
+### Haddad & Bechikh Ali — *Performance of Turkish Information Retrieval: Evaluating the Impact of Linguistic Parameters and Compound Nouns* (CICLing 2014)
 
-*Performance of Turkish Information Retrieval: Evaluating the Impact of Linguistic Parameters and Compound Nouns* (CICLing 2014, LNCS 8404, pp. 381–391, DOI `10.1007/978-3-642-54903-8_32`).
+**Deep dive:** completed 2026-09-04.  
+**Card:** [`literature/deep-dives/2014_Haddad_Bechikh_Ali_Performance_of_Turkish_IR.md`](../literature/deep-dives/2014_Haddad_Bechikh_Ali_Performance_of_Turkish_IR.md)
 
-Verified at lead level:
+This work directly extends the Milliyet evidence from Can et al. to BM25 and a broader set of linguistic preprocessing choices.
 
-- uses the same Milliyet test collection;
-- evaluates TF-IDF, **BM25** and a language model;
-- compares fixed-prefix truncation, Snowball and Zemberek stemming;
-- also studies stop words and compound nouns.
+Experimental setting:
 
-This work directly follows the historical limitation of Can et al. concerning BM25 and should be deep-dived before finalizing claims about morphology-aware BM25 in Turkic-language retrieval.
+- same Milliyet Turkish news collection: 408,305 articles/columns, 2001–2005, about 800 MB and 95.5 million words before stop-word removal;
+- incomplete relevance judgments created with pooling and binary judgments by 33 native-speaker assessors;
+- Terrier IR framework;
+- three lexical/statistical retrieval models: TF-IDF, BM25 and a classical language-model retrieval formulation;
+- evaluation: P@5, P@10, P@15, 11pt-avg, MAP and `bpref`;
+- `bpref` is treated as especially appropriate because judgments are incomplete.
 
-**Deep dive:** pending.
+Preprocessing and representation variants:
+
+- baseline with no stemming and no stop-word removal;
+- 223-word Turkish stop list;
+- structured indexing/querying using `HEADLINE + TEXT` and `title + description`;
+- fixed-prefix truncation: 3-prefix, 4-prefix, 5-prefix;
+- Snowball stemming;
+- Zemberek morphology-aware/root-dictionary stemming;
+- compound-noun candidates extracted with Zemberek POS tags and three patterns: `Noun+Noun`, `Noun+Adjective`, `Adjective+Noun`;
+- compound nouns are added in addition to ordinary keyword terms.
+
+Key BM25 results:
+
+| Configuration | MAP | bpref |
+|---|---:|---:|
+| Baseline | 0.2522 | 0.4041 |
+| Stop words | 0.2567 | 0.4081 |
+| Structure | 0.3149 | 0.4039 |
+| Structure + stop words | 0.3186 | 0.4075 |
+| 3-prefix | 0.1989 | 0.3634 |
+| 4-prefix | 0.3213 | 0.4462 |
+| 5-prefix | 0.3396 | 0.4439 |
+| Snowball | 0.2865 | 0.4104 |
+| **Zemberek** | **0.3440** | **0.4603** |
+| Compound nouns (CN) | 0.2310 | 0.4144 |
+| CN + structure | 0.2971 | 0.4372 |
+| CN + structure + `ignore.low.idf` | 0.3030 | 0.4472 |
+
+Established conclusions relevant to the current PhD:
+
+- the same preprocessing choice can affect TF-IDF, BM25 and the classical language-model retrieval formulation differently;
+- BM25 is the strongest baseline among the three models in the unprocessed configuration;
+- 3-prefix truncation is too aggressive for BM25 in this setting and degrades both MAP and `bpref`;
+- 4/5-prefix truncation yields large gains over raw BM25 and remains highly competitive with the more linguistically elaborate Zemberek configuration;
+- Zemberek gives the strongest reported BM25 MAP and `bpref` among the tested preprocessing variants;
+- Snowball yields only a small `bpref` gain over raw BM25 and is clearly below 4/5-prefix and Zemberek in this collection;
+- stop-word removal produces only small changes;
+- document/query structure improves some metrics strongly (especially MAP) but the authors themselves describe the effect as partly inherent to the test collection;
+- compound-noun indexing is not universally beneficial; its effect depends on retrieval model, metric and configuration;
+- the classical language-model retrieval formulation is more sensitive than TF-IDF/BM25 to added linguistic analysis in several compound-noun configurations.
+
+Critical methodological cautions:
+
+- the paper states that stop words have no significant influence, but **no paired t-test is reported**; the authors explicitly list paired t-testing as future work;
+- the paper attributes Zemberek's advantage over Snowball to its root-dictionary-based processing, but no ablation isolates the dictionary contribution from other implementation/morphological differences;
+- although Zemberek is numerically stronger overall than fixed-prefix truncation, the work does not statistically establish universal superiority of morphology-aware stemming;
+- both this paper and Can et al. use the same Milliyet collection, so the agreement between 4/5-prefix results is not an independent cross-dataset replication;
+- the work evaluates classical lexical/statistical retrieval only: no modern dense semantic retriever and no lexical–semantic hybrid retrieval are tested.
+
+### Consequence for Uzbek retrieval
+
+The combined Can et al. + Haddad & Bechikh Ali evidence strengthens the need for a controlled Uzbek lexical baseline family rather than assuming that linguistic sophistication determines retrieval quality:
+
+`BM25_raw ↔ BM25_simple-normalization ↔ BM25_stem ↔ BM25_lemma`.
+
+A simple fixed-prefix or other low-cost normalization can be useful as a control baseline even if it is not linguistically correct, because the Turkish evidence shows that simple normalization can remain surprisingly competitive.
+
+Only after establishing the lexical variants should the current PhD test how each one interacts with the same semantic retriever:
+
+`Semantic ↔ BM25_raw + Semantic ↔ BM25_stem + Semantic ↔ BM25_lemma + Semantic`.
+
+The paper therefore **supports the current gap but does not narrow or close it**: it says nothing about Uzbek, modern semantic retrieval, or how morphology changes lexical–semantic complementarity.
+
 
 ## 3.2 Uzbek morphology research
 

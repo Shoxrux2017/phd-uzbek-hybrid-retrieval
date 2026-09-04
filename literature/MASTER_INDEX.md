@@ -1,6 +1,6 @@
 # Literature Master Index
 
-**Status:** working master index updated through 2026-09-02.  
+**Status:** working master index updated through 2026-09-04.  
 This is not the final bibliography. It is a research navigation index.
 
 Legend:
@@ -49,7 +49,7 @@ Legend:
 | ID | Work | Year | Reliability | Priority | What it contributes |
 |---|---|---:|---|---|---|
 | MORPH-001 | Can et al. — *Information Retrieval on Turkish Texts* (JASIST) — [deep dive](deep-dives/2008_Can_Information_Retrieval_on_Turkish_Texts.md) | 2008 | A | CRITICAL | Deep dive completed 2026-09-02. Large Turkic/agglutinative IR study: morphology improves lexical retrieval in the tested setting; query length changes the observed stemming effect; elaborate lemmatization does not guarantee superiority; **BM25, semantic and hybrid retrieval were not evaluated**. |
-| MORPH-002 | Haddad & Bechikh Ali — *Performance of Turkish Information Retrieval: Evaluating the Impact of Linguistic Parameters and Compound Nouns* (CICLing/LNCS) | 2014 | B/A- | VERY HIGH | Verified follow-up lead on the Milliyet collection: TF-IDF, BM25 and language model with truncation, Snowball/Zemberek stemming, stop words and compound nouns. Directly relevant to the historical BM25 omission in Can et al.; deep dive pending. |
+| MORPH-002 | Haddad & Bechikh Ali — *Performance of Turkish Information Retrieval: Evaluating the Impact of Linguistic Parameters and Compound Nouns* (CICLing/LNCS) — [deep dive](deep-dives/2014_Haddad_Bechikh_Ali_Performance_of_Turkish_IR.md) | 2014 | B | VERY HIGH | Deep dive completed 2026-09-04. Same Milliyet collection, now with TF-IDF, **BM25** and a classical language-model retrieval formulation. Zemberek gives the strongest BM25 MAP/bpref among the tested preprocessing configurations, while simple 4/5-prefix truncation remains highly competitive. Stop-word effects are small; compound-noun effects depend on model/configuration. **No paired significance test was reported; no semantic or hybrid retrieval was evaluated.** |
 | MORPH-UZ-001 | Bakaev & Shafiev — full-text search with morphology | 2020 | B | HIGH | Direct Uzbek morphology/search link |
 | MORPH-UZ-002 | Bakaev PhD | 2021 | A | CRITICAL | Uzbek morphological analyzer and search applications |
 | MORPH-UZ-003 | Xusainova — lemmatization for Uzbek National Corpus search | 2023 | B/A- | HIGH | Lemmatization/search optimization |
@@ -142,6 +142,12 @@ Legend:
   - Query length already interacts with the effect of morphological normalization in lexical IR.
   - The paper does not test BM25, semantic retrieval or hybrid retrieval, so it does not close the current Uzbek lexical–semantic gap.
 
+- **MORPH-002 — Haddad & Bechikh Ali (2014), *Performance of Turkish Information Retrieval: Evaluating the Impact of Linguistic Parameters and Compound Nouns*.** Deep dive completed 2026-09-04: [card](deep-dives/2014_Haddad_Bechikh_Ali_Performance_of_Turkish_IR.md).
+  - Directly extends the Milliyet evidence to BM25.
+  - Zemberek is the strongest tested BM25 configuration by MAP/bpref, but 4/5-prefix truncation remains competitive and no paired significance test establishes universal superiority.
+  - Preprocessing effects depend on the retrieval model and evaluation metric.
+  - The work remains lexical IR: it does not test modern semantic retrieval or lexical–semantic hybrid integration.
+
 ## Critical first wave
 
 1. UZ-HYB-001 — USHRA
@@ -166,7 +172,6 @@ Legend:
 - Contriever
 - EntityQuestions
 - Bruch fusion analysis
-- Haddad & Bechikh Ali (2014) — Turkish morphology + BM25 follow-up
 - SIGTURK Uzbek retrieval
 - BERTbek / SimRelUz / UZWORDNET.
 
