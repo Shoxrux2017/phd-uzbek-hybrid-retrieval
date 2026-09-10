@@ -1,7 +1,7 @@
 # Research Map
 
-**Purpose:** сквозная карта того, что уже изучено и как отдельные линии связаны с текущей PhD.  
-**Evidence cut-off:** 2026-09-04.
+**Purpose:** сквозная карта того, что уже изучено и как отдельные линии связаны с текущей PhD.
+**Evidence cut-off:** 2026-09-10.
 
 ---
 
@@ -132,7 +132,7 @@ DeepImpact, SPLADE и related work показывают:
 
 ### Can et al. — *Information Retrieval on Turkish Texts* (JASIST, 2008)
 
-**Deep dive:** completed 2026-09-02.  
+**Deep dive:** completed 2026-09-02.
 **Card:** [`literature/deep-dives/2008_Can_Information_Retrieval_on_Turkish_Texts.md`](../literature/deep-dives/2008_Can_Information_Retrieval_on_Turkish_Texts.md)
 
 Experimental setting:
@@ -192,7 +192,7 @@ Critical limitations:
 
 ### Haddad & Bechikh Ali — *Performance of Turkish Information Retrieval: Evaluating the Impact of Linguistic Parameters and Compound Nouns* (CICLing 2014)
 
-**Deep dive:** completed 2026-09-04.  
+**Deep dive:** completed 2026-09-04.
 **Card:** [`literature/deep-dives/2014_Haddad_Bechikh_Ali_Performance_of_Turkish_IR.md`](../literature/deep-dives/2014_Haddad_Bechikh_Ali_Performance_of_Turkish_IR.md)
 
 This work directly extends the Milliyet evidence from Can et al. to BM25 and a broader set of linguistic preprocessing choices.
@@ -663,18 +663,119 @@ These distinctions must survive all future writing:
 
 # 12. Current interpretation of the research opportunity
 
-The strongest current research direction is **not** “build the first Uzbek hybrid search system”.
+The strongest current research direction is **not** “build the first Uzbek hybrid search system”, and it is no longer sufficient to claim novelty from merely placing morphology-aware BM25, a modern dense retriever and fusion in one experiment.
 
-It is to understand:
+After the 2026-09-10 gap-killer analysis, the current residual question is:
 
-> how morphology-aware lexical representation and query characteristics affect the relative and joint effectiveness of lexical and semantic retrieval for Uzbek text ranking.
+> **how changing the morphological representation of the Uzbek lexical channel changes the structure of its complementarity with the same modern semantic retriever — unique relevant hits, overlap and incremental hybrid gain — and how these changes depend on interpretable Uzbek query characteristics.**
 
-Only after that evidence is available should the project decide whether the final method is:
+The controlled logic is:
 
-- fixed score fusion;
-- RRF;
-- learned fusion;
-- query-adaptive fusion;
-- another architecture.
+`BM25_raw ↔ BM25_stem ↔ BM25_lemma`
 
-See `CURRENT_GAP.md` and `OPEN_QUESTIONS.md`.
+with the same fixed dense comparator `D`, followed by:
+
+`BM25_raw + D`
+`BM25_stem + D`
+`BM25_lemma + D`.
+
+The main explanatory analysis should go beyond aggregate MAP/nDCG/Recall and include, where qrels permit:
+
+- per-query gains/losses;
+- unique relevant hits of each component;
+- relevant-set overlap/intersection;
+- oracle union;
+- incremental hybrid gain;
+- statistical relation of these changes to morphology/script/lexical query features.
+
+Only after this interaction is established should the project decide whether the final method is fixed fusion, RRF, learned fusion, query-dependent integration or another architecture.
+
+See `CURRENT_GAP.md`, `GAP_BOUNDARY_2026-09-10.md` and `OPEN_QUESTIONS.md`.
+
+---
+
+# 13. Gap-boundary update — 2026-09-10
+
+Targeted national screening and international gap-killer search materially narrowed the previous v0.4 formulation.
+
+## 13.1 New boundary evidence
+
+### UPERF — Urdu, PACLIC 2024
+
+- raw/stemmed/lemmatized preprocessing;
+- BM25, TF-IDF and embedding-based representations;
+- single-word vs multiple-word queries;
+- weighted lexical–semantic combination;
+- main metric Recall@5.
+
+Consequence: raw/stem/lemma + lexical/semantic analysis in a low-resource morphologically complex language is **not** a novel component combination by itself.
+
+### Kazi & Khoja — Urdu, *Computer Speech & Language* 2026
+
+- multi-benchmark Urdu document retrieval;
+- lexical/statistical models plus embedding features;
+- learned SVMrank reranking.
+
+Consequence: learned lexical–semantic integration in low-resource retrieval is already established.
+
+### Aboasal et al. — Arabic legal IR, 2026
+
+- BM25 with/without Farasa morphology in the reported setup;
+- modern embedding models including BGE-M3/GTE/Ada/Mistral-embed;
+- hybrid BM25(Farasa)+semantic retrieval;
+- MAP/nDCG evidence.
+
+Consequence: morphology-aware BM25 + modern semantic embeddings + hybrid retrieval cannot be used as a broad novelty claim.
+
+### Munetsi, Mukande & O'Connor — Shona, SIGIR 2026
+
+- direct morphology-aware low-resource IR research;
+- BM25 plus modern neural retrieval comparators;
+- standard retrieval metrics.
+
+Consequence: morphology-conditioned retrieval behavior is already a mainstream modern IR research question.
+
+### GreekBarRetrieval — Greek statutory retrieval, 2026 preprint
+
+- three BM25 preprocessing/morphology variants;
+- nine modern dense retrievers;
+- sparse–dense fusion;
+- query reformulation;
+- nDCG/MAP/Recall.
+
+Consequence: even “several morphology-aware BM25 variants + modern dense + fusion in one benchmark” is insufficient as novelty. The project must study the **interaction/decomposition** that remains unexplained.
+
+### Sharifbaev 2026 Uzbek/Russian manuscript
+
+The analyzed manuscript describes:
+
+- lemmatized BM25;
+- LaBSE dense retrieval;
+- graph retrieval;
+- adaptive selection of retrieval strategy;
+- a Uzbek/Russian parliamentary/legal corpus.
+
+It remains D-level until official final/defense evidence is verified, but it is a serious warning against broad claims that Uzbek lacks morphology-aware hybrid retrieval.
+
+## 13.2 Current gap boundary
+
+The current project did **not** find a verified Uzbek analogue that simultaneously:
+
+1. changes only the lexical morphology representation (`raw/stem/lemma`);
+2. keeps the same modern dense retriever fixed;
+3. keeps a controlled fusion protocol fixed/validation-tuned;
+4. measures unique relevant hits, overlap/intersection, oracle union and incremental hybrid gain;
+5. links morphology-induced changes to interpretable Uzbek morphology/script/query features.
+
+This is a provisional literature conclusion, not a claim of exhaustive non-existence.
+
+## 13.3 Search stopping rule
+
+Broad generic gap search is provisionally saturated as of 2026-09-10. Future search should be reopened when:
+
+- a direct analogue appears;
+- a preprint/working manuscript receives a stronger publication/final-defense status;
+- a new 2026+ paper directly targets morphology-induced lexical–dense complementarity;
+- pilot experiments contradict the assumed interaction.
+
+Current source of truth for the formulation: `research/CURRENT_GAP.md`.

@@ -1,6 +1,6 @@
 # Literature Master Index
 
-**Status:** working master index updated through 2026-09-04.  
+**Status:** working master index updated through 2026-09-10.
 This is not the final bibliography. It is a research navigation index.
 
 Legend:
@@ -50,6 +50,8 @@ Legend:
 |---|---|---:|---|---|---|
 | MORPH-001 | Can et al. — *Information Retrieval on Turkish Texts* (JASIST) — [deep dive](deep-dives/2008_Can_Information_Retrieval_on_Turkish_Texts.md) | 2008 | A | CRITICAL | Deep dive completed 2026-09-02. Large Turkic/agglutinative IR study: morphology improves lexical retrieval in the tested setting; query length changes the observed stemming effect; elaborate lemmatization does not guarantee superiority; **BM25, semantic and hybrid retrieval were not evaluated**. |
 | MORPH-002 | Haddad & Bechikh Ali — *Performance of Turkish Information Retrieval: Evaluating the Impact of Linguistic Parameters and Compound Nouns* (CICLing/LNCS) — [deep dive](deep-dives/2014_Haddad_Bechikh_Ali_Performance_of_Turkish_IR.md) | 2014 | B | VERY HIGH | Deep dive completed 2026-09-04. Same Milliyet collection, now with TF-IDF, **BM25** and a classical language-model retrieval formulation. Zemberek gives the strongest BM25 MAP/bpref among the tested preprocessing configurations, while simple 4/5-prefix truncation remains highly competitive. Stop-word effects are small; compound-noun effects depend on model/configuration. **No paired significance test was reported; no semantic or hybrid retrieval was evaluated.** |
+| MORPH-003 | Kazi & Khoja — *UPERF: Urdu Proximity Enhanced Retrieval Framework* (PACLIC 2024) — [deep dive](deep-dives/2024_Kazi_Khoja_UPERF_Urdu_Retrieval.md) | 2024 | B | CRITICAL | Controlled Urdu document retrieval with raw/stemmed/lemmatized preprocessing across BM25, TF-IDF and embedding-based representations; query-type and weighted lexical–semantic combination evidence. No modern retrieval-trained dense comparator or morphology-conditioned overlap/unique-hit decomposition. |
+| MORPH-004 | Munetsi, Mukande, O'Connor — *Morphology-Aware Retrieval for Low-Resource Environments: Advancing Information Retrieval for Shona Language* (SIGIR 2026) | 2026 | A | CRITICAL | A-level evidence that morphology-aware low-resource IR is already a direct modern research line with BM25 and neural retrieval comparators. Does not close the controlled raw/stem/lemma × fixed-dense complementarity question. |
 | MORPH-UZ-001 | Bakaev & Shafiev — full-text search with morphology | 2020 | B | HIGH | Direct Uzbek morphology/search link |
 | MORPH-UZ-002 | Bakaev PhD | 2021 | A | CRITICAL | Uzbek morphological analyzer and search applications |
 | MORPH-UZ-003 | Xusainova — lemmatization for Uzbek National Corpus search | 2023 | B/A- | HIGH | Lemmatization/search optimization |
@@ -109,6 +111,9 @@ Legend:
 | HYB-007 | Chen et al. — BGE-M3 / M3-Embedding | 2024 | A | CRITICAL | Dense+sparse+multi-vector unified model |
 | HYB-008 | Arabzadeh, Yan, Clarke — query-based sparse/dense/hybrid strategy selection | 2021 | A | VERY HIGH | Query-dependent strategy already exists |
 | HYB-009 | Posokhov et al. — Query-Adaptive Hybrid Search | 2026 | A | CRITICAL | Dynamic `alpha(q)` already exists |
+| HYB-010 | Kazi & Khoja — *Towards building Urdu language document retrieval framework* (*Computer Speech & Language*) | 2026 | A | CRITICAL | Multi-benchmark Urdu retrieval with lexical/statistical models, embedding features and SVMrank learned reranking. Strong low-resource lexical–semantic integration evidence; no verified full morphology × fixed-modern-dense complementarity decomposition. |
+| HYB-011 | Aboasal et al. — *Arabic Legal Information Retrieval: The Impact of Morphological Segmentation and Semantic Embeddings* — [deep dive](deep-dives/2026_Aboasal_Arabic_Legal_IR_Morphology_Semantic.md) | 2026 | B | CRITICAL | Farasa morphology + BM25 + modern embeddings (including BGE-M3/GTE/Ada/Mistral-embed) + hybrid legal retrieval. Kills broad morphology-aware BM25 + modern semantic + hybrid novelty claims; does not isolate morphology-induced complementarity structure. |
+| HYB-012 | Beta et al. — *GreekBarRetrieval: A Benchmark for Greek Statutory Retrieval* — [deep dive](deep-dives/2026_Beta_GreekBarRetrieval.md) | 2026 | C | CRITICAL | Preprint with three BM25 morphology/preprocessing variants, nine modern dense retrievers, fusion and query reformulation. Closest global gap killer found; no verified full unique-hit/overlap/oracle decomposition across morphology variants with the same dense comparator. |
 
 ---
 
@@ -130,6 +135,7 @@ Legend:
 | ID | Work | Reliability | Status |
 |---|---|---|---|
 | UNVER-001 | *Context-Aware Hybrid BM25–BERT Retrieval for Uzbek Legal Texts* (Scribd manuscript) | D | Keep only as literature-search lead; no reliable publication record confirmed |
+| UNVER-002 | Sharifbaev A. N. — 2026 Uzbek/Russian legal hybrid-retrieval dissertation manuscript — [targeted analysis](deep-dives/2026_Sharifbaev_Uzbek_Legal_Hybrid_Retrieval_Manuscript.md) | D | CRITICAL lead only: manuscript describes lemmatized BM25 + LaBSE + graph retrieval + adaptive controller, but official final/defense status is unverified and the manuscript contains unresolved placeholders/internal inconsistencies. |
 
 ---
 
@@ -147,6 +153,24 @@ Legend:
   - Zemberek is the strongest tested BM25 configuration by MAP/bpref, but 4/5-prefix truncation remains competitive and no paired significance test establishes universal superiority.
   - Preprocessing effects depend on the retrieval model and evaluation metric.
   - The work remains lexical IR: it does not test modern semantic retrieval or lexical–semantic hybrid integration.
+
+- **MORPH-003 — Kazi & Khoja (2024), *UPERF: Urdu Proximity Enhanced Retrieval Framework*.** Targeted deep dive completed 2026-09-10: [card](deep-dives/2024_Kazi_Khoja_UPERF_Urdu_Retrieval.md).
+  - Raw/stemmed/lemmatized preprocessing is already tested across lexical and embedding-based retrieval in low-resource Urdu.
+  - Weighted lexical–semantic combination does not automatically beat the strongest standalone component.
+  - No modern retrieval-trained dense comparator and no systematic morphology-conditioned overlap/unique-hit decomposition.
+
+- **HYB-011 — Aboasal et al. (2026), *Arabic Legal Information Retrieval: The Impact of Morphological Segmentation and Semantic Embeddings*.** Targeted gap analysis completed 2026-09-10: [card](deep-dives/2026_Aboasal_Arabic_Legal_IR_Morphology_Semantic.md).
+  - Morphology-aware BM25, modern semantic embeddings and hybrid retrieval already coexist in one Arabic legal IR study.
+  - The available verified record does not establish a raw/stem/lemma × same-dense interaction or a complementarity decomposition.
+
+- **HYB-012 — Beta et al. (2026), *GreekBarRetrieval*.** Targeted gap analysis completed 2026-09-10: [card](deep-dives/2026_Beta_GreekBarRetrieval.md).
+  - Multiple BM25 morphology/preprocessing variants, modern dense retrievers, fusion and query reformulation are already evaluated in one statutory-retrieval benchmark.
+  - This kills novelty based on the experimental component list itself; the surviving gap is the morphology-induced change in lexical–dense complementarity.
+  - Reliability remains C while only the preprint status is verified.
+
+- **UNVER-002 — Sharifbaev A. N. (2026), Uzbek/Russian legal hybrid-retrieval dissertation manuscript.** Targeted manuscript analysis completed 2026-09-10: [card](deep-dives/2026_Sharifbaev_Uzbek_Legal_Hybrid_Retrieval_Manuscript.md).
+  - Describes lemmatized BM25 + LaBSE + graph retrieval + adaptive control on parliamentary/legal data.
+  - It is highly relevant to gap boundaries but remains D-level until an official final/defense record is verified.
 
 ## Critical first wave
 
