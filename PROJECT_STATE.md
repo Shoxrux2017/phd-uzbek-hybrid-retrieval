@@ -163,17 +163,17 @@ These are design controls for testing the working gap, **not final novelty or es
 
 Broad generic gap-search and broad national evidence synthesis have reached **provisional saturation**.
 
-Immediate sequence: **provisional RQs/hypotheses → benchmark/qrels protocol → controlled baseline/pilot experiment**. Working RQs/H1–H3 v0.1 are recorded in [OPEN_QUESTIONS](research/OPEN_QUESTIONS.md); they are provisional, not approved final dissertation RQs or established findings.
+Scientific audit/refinement of provisional RQ1–RQ3 / H1–H3 is **completed as of 2026-09-15**. Current **working RQ/H v0.2**, including null hypotheses, falsifiability and measurement logic, is recorded in [OPEN_QUESTIONS](research/OPEN_QUESTIONS.md). These remain provisional, not final dissertation RQs or established findings; **v0.8 refined remains unchanged and provisional**.
+
+Immediate next step: create **`BENCHMARK_QRELS_PROTOCOL_v0.1`** to design the corpus, retrieval unit, query set, morphology/query strata, pooling, qrels, assessors, relevance scale, adjudication, inter-annotator agreement, dev/test split, metrics, statistical tests, leakage controls, candidate depth and dense-baseline pilot protocol. The protocol has not yet been created; numerical equivalence margins / SESOI and concrete statistical tests remain to be specified there.
 
 Next priorities:
 
-1. Refine the provisional v0.1 research questions from v0.8 without predetermining the answer.
-2. Operationalize the provisional falsifiable hypotheses and null conditions.
-3. Design Uzbek retrieval benchmark / qrels protocol.
-4. Select and justify BM25 preprocessing variants.
-5. Pilot/dev-validate candidate semantic dense retrievers for Uzbek, select primary `D` by a predefined rule and freeze it for the main interaction analysis.
-6. Specify primary normalized convex fusion with one global alpha, normalization and candidate depth across morphology conditions; use RRF as a secondary robustness control.
-7. Run pilot experiments to test whether morphology actually changes lexical–semantic complementarity.
-8. If the interaction is weak/unstable, revise the gap before inventing a new method.
+1. Design `BENCHMARK_QRELS_PROTOCOL_v0.1` under working RQ/H v0.2.
+2. Select and justify BM25 preprocessing variants.
+3. Pilot/dev-validate candidate semantic dense retrievers for Uzbek, select primary `D` by a predefined rule and freeze it for the main interaction analysis.
+4. Specify primary normalized convex fusion with one global alpha, normalization and candidate depth across morphology conditions; use RRF as a secondary robustness control.
+5. Run pilot experiments to test whether morphology actually changes lexical–semantic complementarity.
+6. Reassess the gap if the interaction is weak/unstable; convincing support for practically negligible complementarity changes requires revision before inventing a new method. Insufficient evidence alone does not prove no effect.
 
 The seven targeted international deep dives are complete. UZ-SEM-007 and targeted verification questions remain tracked in the index/open questions, but the immediate bottleneck is **benchmark/qrels + Uzbek pilot**, not broad literature search.

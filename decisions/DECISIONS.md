@@ -131,3 +131,21 @@ Rationale: the analyzed manuscript is highly relevant and describes lemmatized B
 Rationale: recent searches increasingly return already-known component combinations. The current bottleneck is no longer collecting more broadly related papers, but testing whether the residual interaction actually exists: `morphological representation → lexical–dense overlap/unique hits → incremental hybrid gain → Uzbek query characteristics`.
 
 This is not a claim that the literature search is exhaustive. Re-open the gap if a direct analogue, a stronger publication version, or pilot experimental evidence contradicts the current position.
+
+## D-022 — 2026-09-15 — ACTIVE
+**RQ/H v0.2 experimental boundary.**
+
+1. RQ2 является центральным вопросом текущего **`v0.8 refined`**: как смена морфологического представления лексического канала изменяет его взаимодополняемость с одной и той же `D` и дополнительный эффект соответствующего гибридного поиска.
+2. Основной контролируемый эксперимент различает взаимодополняемость на уровне множеств кандидатов / релевантных документов (candidate/relevant-set complementarity) и эффективность ранжирования после объединения (fusion ranking effectiveness). При смене `raw/stem/lemma` фиксируются `D`, её checkpoint/режим/предобработка, формула объединения, нормализация, один global `alpha`, глубина `k`, реализация/основные параметры BM25 и неморфологическая предобработка.
+3. H2 допускает опровержение: H2a проверяет изменение взаимодополняемости множеств, H2b — сопровождающее его изменение incremental hybrid gain. Если `raw/stem/lemma` при одной и той же `D` практически не изменяют lexical–dense complementarity и это убедительно подтверждено эмпирически, **`v0.8 refined` должен быть пересмотрен**. Неотклонение H0 само по себе не доказывает отсутствия эффекта.
+4. RQ3 ограничен объяснением связи заранее определённых интерпретируемых характеристик запроса с **morphology-induced complementarity change**. Он не является generic query-adaptive fusion / dynamic-alpha problem, предсказанием лучшего `alpha(q)` или выбором лучшей поисковой стратегии по характеристикам запроса; признаки рассчитываются независимо от результатов сравниваемых систем.
+5. Отрицательный результат является допустимым научным результатом. Протокол должен различать свидетельства практически значимого эффекта, недостаточность свидетельств и свидетельства практически незначимого эффекта; численные equivalence margins / SESOI и конкретные статистические тесты будут заданы в `BENCHMARK_QRELS_PROTOCOL_v0.1`.
+6. Нельзя заранее предполагать `lemma > stem > raw`, `hybrid > best standalone` или `dense > BM25`.
+
+RQ/H v0.2 остаются **provisional / working**, а не окончательными формулировками диссертации. Решение уточняет экспериментальные границы и не изменяет текущий provisional research gap **v0.8 refined**.
+
+Rationale:
+
+- [CURRENT_GAP](../research/CURRENT_GAP.md) задаёт проверяемую связь смены морфологического представления с изменением взаимодополняемости и условие пересмотра gap; [OPEN_QUESTIONS](../research/OPEN_QUESTIONS.md) фиксирует рабочие RQ/H v0.2, нулевые гипотезы и логику измерений.
+- [Query-Adaptive Hybrid Search boundary](../literature/deep-dives/2026_Posokhov_Query_Adaptive_Hybrid_Search.md) показывает, что Query-Driven Alpha Prediction и динамические веса компонентов уже представлены в литературе; RQ3 сохраняет узкий предмет morphology-induced изменения взаимодополняемости.
+- [Bruch, Gai & Ingber](../literature/deep-dives/2023_Bruch_Gai_Ingber_Fusion_Functions_Hybrid_Retrieval.md) обосновывают разделение доступных релевантных документов в объединении кандидатов и качества их ранжирования после fusion. Это требует раздельной диагностики H2a/H2b; `per-query best-alpha oracle != oracle union`.
