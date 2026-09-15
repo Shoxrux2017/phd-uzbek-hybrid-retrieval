@@ -1,6 +1,6 @@
 # Literature Master Index
 
-**Status:** working master index updated through 2026-09-10.
+**Status:** working master index updated through 2026-09-15.
 This is not the final bibliography. It is a research navigation index.
 
 Legend:
@@ -20,9 +20,10 @@ Legend:
 | PHD-INT-001 | Sheng-Chieh Lin — *Building a Robust Retrieval System with Dense Retrieval Models* (Waterloo) | 2024 | Dense robustness, lexical-semantic integration | A | CRITICAL | Main modern IR PhD structural/reference anchor |
 | PHD-INT-002 | Minghan Li — *Pretrained Transformers for Efficient and Robust Information Retrieval* (Waterloo) | 2024 | Dense/sparse/hybrid/multi-vector robustness | A | VERY HIGH | Architecture taxonomy, representation limitations |
 | PHD-INT-003 | Georgios Sidiropoulos — *Improving the Robustness and Effectiveness of Neural Retrievers in Noisy and Low-Resource Settings* (UvA) | 2025 | Low-resource neural retrieval | A | VERY HIGH | Low-resource framing |
-| PHD-UZ-001 | I. I. Bakaev — *Models and Algorithms of Morphological Analysis of Uzbek Word Forms* | 2021 | Uzbek morphology and search applications | A | CRITICAL | National morphology/IR anchor |
+| PHD-UZ-001 | I. I. Bakaev — *Models and Algorithms of Morphological Analysis of Uzbek Word Forms* — [deep dive](deep-dives/2021_Bakaev_Uzbek_Morphology_Search.md) | 2021 | Uzbek morphology and search applications | A | CRITICAL | Defended PhD; Morphoanalyzer and full-text/library deployment; analyzer accuracy and workflow gains are not qrels-based IR effectiveness. |
 | PHD-UZ-002 | Kh. I. Akhmedova — semantic analysis of Uzbek sentences, specialty 05.01.10 | 2023 | Uzbek semantic processing | A | HIGH | National semantic-processing anchor |
-| PHD-UZ-003 | Z. Y. Xusainova — tokenization/stemming/lemmatization of Uzbek units | 2024 | Uzbek preprocessing/search optimization | A | CRITICAL | Morphology preprocessing anchor |
+| PHD-UZ-003 | Z. Y. Xusainova — tokenization/stemming/lemmatization of Uzbek units — [deep dive](deep-dives/2024_Xusainova_Uzbek_Tokenization_Stemming_Lemmatization.md) | 2024 | Uzbek preprocessing/search optimization | A | CRITICAL | Defended PhD; BPE/tokenizer, UzbStemmer and lemmatizer; reported 97.5% is stemmer/analyzer accuracy, not retrieval effectiveness. |
+| PHD-UZ-004 | Botir B. Elov — NLP-based automatic analysis and processing of Uzbek texts — [deep dive](deep-dives/2026_Elov_Uzbek_NLP_Morphology_Information_System.md) | 2026 | Integrated Uzbek NLP and search-oriented indexing | A | CRITICAL | Officially defended DSc, 2026-02-05; supplied manuscript dated 2025. Morphology/syntax/semantics integration is not lexical+dense IR fusion; module metrics and corpus-scale inconsistencies require context. |
 
 ---
 
@@ -52,12 +53,14 @@ Legend:
 | MORPH-002 | Haddad & Bechikh Ali — *Performance of Turkish Information Retrieval: Evaluating the Impact of Linguistic Parameters and Compound Nouns* (CICLing/LNCS) — [deep dive](deep-dives/2014_Haddad_Bechikh_Ali_Performance_of_Turkish_IR.md) | 2014 | B | VERY HIGH | Deep dive completed 2026-09-04. Same Milliyet collection, now with TF-IDF, **BM25** and a classical language-model retrieval formulation. Zemberek gives the strongest BM25 MAP/bpref among the tested preprocessing configurations, while simple 4/5-prefix truncation remains highly competitive. Stop-word effects are small; compound-noun effects depend on model/configuration. **No paired significance test was reported; no semantic or hybrid retrieval was evaluated.** |
 | MORPH-003 | Kazi & Khoja — *UPERF: Urdu Proximity Enhanced Retrieval Framework* (PACLIC 2024) — [deep dive](deep-dives/2024_Kazi_Khoja_UPERF_Urdu_Retrieval.md) | 2024 | B | CRITICAL | Controlled Urdu document retrieval with raw/stemmed/lemmatized preprocessing across BM25, TF-IDF and embedding-based representations; query-type and weighted lexical–semantic combination evidence. No modern retrieval-trained dense comparator or morphology-conditioned overlap/unique-hit decomposition. |
 | MORPH-004 | Munetsi, Mukande, O'Connor — *Morphology-Aware Retrieval for Low-Resource Environments: Advancing Information Retrieval for Shona Language* (SIGIR 2026) | 2026 | A | CRITICAL | A-level evidence that morphology-aware low-resource IR is already a direct modern research line with BM25 and neural retrieval comparators. Does not close the controlled raw/stem/lemma × fixed-dense complementarity question. |
-| MORPH-UZ-001 | Bakaev & Shafiev — full-text search with morphology | 2020 | B | HIGH | Direct Uzbek morphology/search link |
-| MORPH-UZ-002 | Bakaev PhD | 2021 | A | CRITICAL | Uzbek morphological analyzer and search applications |
-| MORPH-UZ-003 | Xusainova — lemmatization for Uzbek National Corpus search | 2023 | B/A- | HIGH | Lemmatization/search optimization |
-| MORPH-UZ-004 | Xusainova PhD | 2024 | A | CRITICAL | Tokenizer/stemmer/lemmatizer |
+| MORPH-UZ-001 | Bakaev & Shafiev — full-text search with morphology — [deep dive](deep-dives/2021_Bakaev_Uzbek_Morphology_Search.md) | 2020 | B | HIGH | Stemmer + lemmatizer with term/field-weighted ranking; qualitative search examples, no BM25 or qrels-based IR evaluation. |
+| MORPH-UZ-002 | Bakaev PhD — [deep dive](deep-dives/2021_Bakaev_Uzbek_Morphology_Search.md) | 2021 | A | CRITICAL | Morphoanalyzer; genre-specific base-identification accuracy and real National Library deployment. The 9–11% catalog workflow/productivity gain is not retrieval effectiveness; no raw/stem/lemma × dense benchmark. |
+| MORPH-UZ-003 | Xusainova — lemmatization for Uzbek National Corpus search — [deep dive](deep-dives/2024_Xusainova_Uzbek_Tokenization_Stemming_Lemmatization.md) | 2023 | B/A- | HIGH | Lemmatization/search optimization evidence; related PhD's 97.5% measures stemmer/analyzer accuracy, not retrieval effectiveness. No controlled BM25/qrels benchmark; SEO != ad-hoc IR. |
+| MORPH-UZ-004 | Xusainova PhD — [deep dive](deep-dives/2024_Xusainova_Uzbek_Tokenization_Stemming_Lemmatization.md) | 2024 | A | CRITICAL | BPE/tokenizer, UzbStemmer, lemmatizer; >100k sentences and reported 97.5% analyzer accuracy; >32k simple + >7.5k compound lexemes. No controlled raw/stem/lemma BM25 IR. |
 | MORPH-UZ-005 | Elov, Xusainova, Berdieva — Uzbek stemming/morphological issues | 2023 | B | MEDIUM | Phonetic/morphological stemming complications |
 | MORPH-UZ-006 | IL-402104209 morpholexicon/morphological analyzer project | 2022–2024 | B | HIGH | Official Uzbek NLP/IR morphology project |
+| MORPH-UZ-007 | Elov DSc — morphology/normalization/indexing — [deep dive](deep-dives/2026_Elov_Uzbek_NLP_Morphology_Information_System.md) | 2026 | A | CRITICAL | Hybrid morphology, lemma-based inverted indexing and UzNLP; SQL Server full-text / Elasticsearch are infrastructure, not proof of a BM25+dense benchmark. NLP accuracy/F1 != MAP/nDCG/Recall; preserve differing evaluation and corpus-count contexts. |
+| MORPH-UZ-008 | Turayev B.Sh. — candidate PhD, Uzbek morphosyntactic analysis — [deep dive](deep-dives/2026_Turayev_Uzbek_Morphosyntactic_Neural_Analysis.md) | 2026 | B pending final-defense verification | HIGH | TUIT seminar 2026-07-11; 32,225 base forms and explicit lemmatization; MaxEnt+BiLSTM+CRF / RNN+CYK. Registration B2025.3.PhD/T5887 conflicts with another OAK dissertation; National Library document workflow is not an IR benchmark. |
 | SCRIPT-UZ-001 | Mansurov & Mansurov — Uzbek Cyrillic-Latin transliteration using MT | 2021 | C/B | MEDIUM | Script normalization |
 | SCRIPT-UZ-002 | Salaev et al. — automatic Uzbek writing-system transliteration | 2022 | B/C | MEDIUM | Script normalization |
 
@@ -95,6 +98,9 @@ Legend:
 | UZ-SEM-005 | Akhmedova PhD | 2023 | A | HIGH | Uzbek sentence semantic analysis; **not dense IR** |
 | UZ-SEM-006 | Kuriyozov, Vilares, Gómez-Rodríguez — BERTbek | 2024 | A | VERY HIGH | Uzbek LM; sentiment/topic/NER; **not retrieval** |
 | UZ-SEM-007 | Muminov & Allaberganova — morphology-oriented Uzbek STS | 2025/2026 metadata to verify | A-/B+ | CRITICAL | Morphology + semantic dual encoder exists; **STS != IR** |
+| UZ-SEM-008 | Axmedova X.X. — Uzbek paraphrasing and semantic matching — [deep dive](deep-dives/2026_Axmedova_Uzbek_Paraphrase_Semantic_Matching.md) | 2026 | B pending final-defense protocol verification | HIGH | Multilingual E5 + cosine matching, Jina-assisted candidate selection, Gemma3 paraphrasing; dataset/result descriptions remain unreconciled. **Paraphrase/semantic matching != corpus-level retrieval.** |
+| UZ-SEM-009 | Abdisalomova Sh.A. — Uzbek coreference / UzCoref — [deep dive](deep-dives/2026_Abdisalomova_Uzbek_Coreference_UzCoref.md) | 2026 | B pending final-defense verification | MEDIUM | Expert-corrected CoNLL-style corpus: 1,020 documents, ~320k tokens, 18,451 mentions, 5,326 chains; hybrid coreference and UzRoBERTa. **Coreference and search-related deployment != retrieval evaluation.** |
+| UZ-NLP-001 | Allanazarova S.Y. — sentiment / SentiUzNet — [deep dive](deep-dives/2026_Allanazarova_Uzbek_Sentiment_SentiUzNet.md) | 2026 | B pending final-defense verification | LOW / background | 3,336 synsets, six annotators, κ=0.79; 384k+ comments, reported 91% sentiment accuracy. **Sentiment classification/resource hybridization != lexical+dense retrieval.** |
 
 ---
 
@@ -121,11 +127,11 @@ Legend:
 
 | ID | Work | Year | Reliability | Priority | Current interpretation |
 |---|---|---:|---|---|---|
-| UZ-IR-001 | Ishkobilov et al. — *Semantic Retrieval of Uzbek Seismic Safety Regulations* | 2026 | B/A- | CRITICAL | 120 docs, 8,450 paragraphs, 100 queries; TF-IDF vs FastText; P@5/R@5/MAP/MRR/F1; comparison not fusion |
+| UZ-IR-001 | Ishkobilov et al. — *Semantic Retrieval of Uzbek Seismic Safety Regulations* (*Vibroengineering Procedia* 63, 227–231) — [deep dive](deep-dives/2026_Ishkobilov_Uzbek_Seismic_Semantic_Retrieval.md) | 2026 | B | CRITICAL | Verified-abstract deep dive; project record: 120 docs, 8,450 paragraphs, 100 queries. TF-IDF P@5/R@5 = 0.6017/0.5418; FastText = 0.7444/0.6875. Paired t=15.1372, p<0.001 reported, but tested quantity/assumptions unclear; exact MAP/MRR and F1 use/value need full text. No BM25, morphology intervention, fusion or complementarity decomposition. |
 | UZ-IR-002 | Aslantaş & Gungor — SIGTURK Turkic Idiom benchmark | 2026 | A | VERY HIGH | Uzbek semantic retrieval exists, but specialized idiom task |
-| UZ-IR-003 | Urinov — BM25 vs vector search in Uzbek RAG | 2025 | C/B | MEDIUM | Comparison, not systematic hybrid fusion |
-| UZ-HYB-001 | Absalamova, Muminov, Absalamova — USHRA legal chatbot | 2025/2026 metadata verify | A-/B+ | CRITICAL | Uzbek hybrid/RAG exists; reported 85% answer accuracy/200 criminal-law queries; fusion details need full text |
-| UZ-HYB-002 | Absalamova et al. — O-RAG | 2025/2026 metadata verify | A-/B+ | CRITICAL | Hybrid + legal ontology + ontological reranking; domain-specific |
+| UZ-IR-003 | Urinov — BM25 vs vector search in Uzbek RAG — [deep dive](deep-dives/2025_Urinov_Uzbek_RAG_BM25_Vector_Search.md) | 2025 | C | MEDIUM | BM25-like vs semantic vector comparison verified at Zenodo metadata/abstract level, DOI 10.5281/zenodo.17341315. Venue, dataset/qrels/metrics/vector model and genuine hybrid fusion remain unverified. |
+| UZ-HYB-001 | Absalamova, Muminov, Absalamova — USHRA legal chatbot — [deep dive](deep-dives/2025_Absalamova_Muminov_Absalamova_USHRA_Uzbek_Legal_RAG.md) | 2025 | B | CRITICAL | Verified ACM ICFNDS ’25, pp. 1036–1042, DOI 10.1145/3789692.3789825; multilingual embeddings + RAG + Lex.uz + named USHRA. 85% chatbot answer accuracy on 200 criminal-law queries, **not retrieval accuracy**; exact lexical/dense/fusion components and pure IR metrics unverified. |
+| UZ-HYB-002 | Absalamova, Muminov, Absalamova — O-RAG — [deep dive](deep-dives/2025_Absalamova_Muminov_Absalamova_O_RAG_Uzbek_Legal_Ontology.md) | 2025 | B | CRITICAL | Verified ACM ICFNDS ’25, pp. 680–687, DOI 10.1145/3789692.3789782; custom legal ontology + hybrid retrieval + ontology-based reranking, Lex.uz QA data. Hit Rate / Citation Accuracy improvement at abstract level; exact lexical/dense/fusion components and metric values unverified. Gains cannot be assigned to fusion without ablation. |
 | UZ-RAG-003 | Umarova — Uzbek legal QA architecture | 2025/2026 | B/C | MEDIUM | BM25/dense/Transformer/rule components; verify experimental depth |
 
 ---
@@ -172,19 +178,28 @@ Legend:
   - Describes lemmatized BM25 + LaBSE + graph retrieval + adaptive control on parliamentary/legal data.
   - It is highly relevant to gap boundaries but remains D-level until an official final/defense record is verified.
 
-## Critical first wave
+### National deep dives completed 2026-09-11–2026-09-14
 
-1. UZ-HYB-001 — USHRA
-2. UZ-HYB-002 — O-RAG
-3. HYB-009 — Query-Adaptive Hybrid Search
-4. HYB-003 — CLEAR
-5. HYB-006 — DHR / Lin & Lin
-6. HYB-007 — BGE-M3
-7. PHD-INT-001 — Sheng-Chieh Lin PhD
-8. PHD-UZ-001 — Bakaev PhD
-9. PHD-UZ-003 — Xusainova PhD
-10. UZ-IR-001 — Ishkobilov et al.
-11. UZ-SEM-007 — morphology-oriented Uzbek STS
+Cards are linked in the corresponding rows above; repeated structural/morphology IDs refer to the same card.
+
+- **Bakaev / Xusainova / Elov:** A-level defended work; morphology/search infrastructure, with explicit analyzer/deployment versus IR boundaries.
+- **Turayev / Axmedova / Abdisalomova / Allanazarova:** completed supplied-source analyses; B pending final-defense verification (Axmedova: final protocol; Turayev: registration conflict). Paraphrase, coreference and sentiment remain separate from corpus IR.
+- **Ishkobilov:** B; verified-abstract retrieval deep dive completed; full-paper protocol/metric details remain open.
+- **USHRA / O-RAG:** 2025, B; bibliographic/verified-abstract deep dives completed; full-text methods and evaluation verification remain open.
+- **Urinov:** C; verified-metadata/abstract deep dive completed; full-text venue/protocol/fusion verification remains open.
+
+Synthesis: [National evidence matrix, 2026-09-14](../research/NATIONAL_EVIDENCE_MATRIX_2026-09-14.md). These additions strengthen the boundary without changing `v0.8 refined`.
+
+## Critical first wave — remaining deep dives
+
+1. HYB-009 — Query-Adaptive Hybrid Search
+2. HYB-003 — CLEAR
+3. HYB-006 — DHR / Lin & Lin
+4. HYB-007 — BGE-M3
+5. PHD-INT-001 — Sheng-Chieh Lin PhD
+6. UZ-SEM-007 — morphology-oriented Uzbek STS
+
+Targeted follow-up verification for completed national cards is tracked in [OPEN_QUESTIONS](../research/OPEN_QUESTIONS.md).
 
 ## Second wave
 
@@ -203,7 +218,7 @@ Legend:
 
 # Citation metadata warnings
 
-1. ICFNDS proceedings branded `'25` may have publication pages/metadata dated 2026. For USHRA/O-RAG/morphology-oriented STS use official ACM record before final bibliography.
+1. USHRA and O-RAG are verified ACM ICFNDS ’25 papers with publication year **2025**; secondary 2026 appearance/indexing dates do not change that year. Morphology-oriented STS metadata remains to be verified separately against the official ACM record.
 2. UzBERT/Uzbek embeddings may remain preprints; do not silently upgrade their evidence level.
 3. For national PhDs use official OAK/university metadata where possible.
 4. For any strong numerical claim, verify primary/full text before putting it into final dissertation.
