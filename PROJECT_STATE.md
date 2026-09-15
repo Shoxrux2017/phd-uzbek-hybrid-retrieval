@@ -1,6 +1,6 @@
 # Current PhD State
 
-**Last updated:** 2026-09-10
+**Last updated:** 2026-09-15
 **Status:** working research state; not final dissertation state.
 
 ## Topic
@@ -52,21 +52,26 @@
 
 Это **не окончательная новизна** и не утверждение, что adaptive fusion обязательно является решением.
 
-## Evidence update — 2026-09-10
+## Evidence update — 2026-09-15
 
 Targeted analysis и aggressive gap-killer search существенно сузили прежний v0.4.
 
 ### National boundary
 
-Уже установлено/обнаружено:
+National deep dives completed 2026-09-11–2026-09-14 strengthen the existing boundary; **v0.8 refined remains unchanged**. Cards and evidence limits are consolidated in the [national evidence matrix](research/NATIONAL_EVIDENCE_MATRIX_2026-09-14.md) and [master index](literature/MASTER_INDEX.md).
 
-- Bakaev / Xusainova / related Uzbek research — morphology, stemming, lemmatization and search-oriented processing exist;
-- Ishkobilov et al. — corpus-level Uzbek semantic retrieval with standard IR metrics exists;
-- USHRA / O-RAG — Uzbek hybrid/RAG exists;
-- Axmedova 2026 screening — modern multilingual semantic matching, including Multilingual E5-related use, exists for Uzbek paraphrase processing, but STS/paraphrase != corpus-level IR;
-- Turayev 2026 screening — neural/statistical morphology and explicit Uzbek lemmatization exist;
-- Elov 2026 screening — integrated Uzbek morphology/syntax/semantics and IR-oriented infrastructure exist;
-- Sharifbaev 2026 manuscript describes lemmatized BM25 + LaBSE + graph retrieval + adaptive controller for Uzbek legal/parliamentary data, but remains **D-level unverified manuscript evidence** until official final/defense verification.
+- **Bakaev — A, defended PhD, deep dive completed:** morphology/full-text/library search and National Library deployment exist; no modern qrels-based BM25+dense benchmark. Analyzer accuracy and 9–11% workflow gains are not retrieval effectiveness.
+- **Xusainova — A, defended PhD, deep dive completed:** tokenizer/stemmer/lemmatizer, reported 97.5% analyzer accuracy; no controlled BM25 raw/stem/lemma IR benchmark.
+- **Elov — A, DSc officially defended 2026-02-05, deep dive completed:** 2025 manuscript; integrated morphology/syntax/semantics and search-oriented lemma indexing, not lexical+dense IR. Corpus counts and module-score contexts require caution.
+- **Turayev — B pending final-defense verification:** 32k+ lemma/base-form infrastructure; TUIT seminar verified, registration-number conflict unresolved; document workflow, no IR benchmark.
+- **Axmedova — B pending final-defense protocol verification:** modern E5/Jina/Gemma3 semantic/paraphrase matching, not corpus-level IR; dataset descriptions remain unreconciled.
+- **Abdisalomova — B pending final-defense verification:** contextual/coreference NLP and UzCoref, not corpus retrieval or verified search-effectiveness gains.
+- **Allanazarova — B pending final-defense verification, background:** SentiUzNet/sentiment classification, not retrieval.
+- **Ishkobilov — B, verified-abstract deep dive completed:** real corpus-level Uzbek semantic retrieval with standard metrics; TF-IDF vs FastText, no BM25/raw-stem-lemma/fusion. Full qrels/metric/test details remain open.
+- **USHRA — 2025, B, verified ACM bibliographic/abstract deep dive completed:** hybrid/RAG; 85% answer accuracy on 200 criminal-law queries != retrieval effectiveness; exact fusion unverified.
+- **O-RAG — 2025, B, verified ACM bibliographic/abstract deep dive completed:** ontology-enhanced hybrid retrieval/reranking; exact components and metric values unverified; gains cannot be attributed to fusion alone.
+- **Urinov — C, metadata/abstract deep dive completed:** supporting BM25-like-vs-vector comparison evidence; full protocol and genuine fusion unverified.
+- **Sharifbaev — D unchanged:** manuscript describes lemmatized BM25 + LaBSE + graph retrieval + adaptive control; remains unverified until official final/defense verification.
 
 ### International boundary
 
@@ -134,12 +139,14 @@ Aggregate metrics alone are insufficient for the main explanatory claim. The ana
 
 ## Next scientific phase
 
-Broad generic gap-search has reached **provisional saturation**.
+Broad generic gap-search and broad national evidence synthesis have reached **provisional saturation**.
+
+Immediate sequence: **provisional RQs/hypotheses → benchmark/qrels protocol → controlled baseline/pilot experiment**. Working RQs/H1–H3 v0.1 are recorded in [OPEN_QUESTIONS](research/OPEN_QUESTIONS.md); they are provisional, not approved final dissertation RQs or established findings.
 
 Next priorities:
 
-1. Formalize research questions from v0.8 without predetermining the answer.
-2. Formulate falsifiable hypotheses.
+1. Refine the provisional v0.1 research questions from v0.8 without predetermining the answer.
+2. Operationalize the provisional falsifiable hypotheses and null conditions.
 3. Design Uzbek retrieval benchmark / qrels protocol.
 4. Select and justify BM25 preprocessing variants.
 5. Select at least one modern retrieval-trained multilingual dense baseline and keep it fixed for the main interaction analysis.

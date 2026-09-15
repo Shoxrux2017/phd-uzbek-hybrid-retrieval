@@ -2,7 +2,7 @@
 
 **Status:** provisional / working
 **Current version:** v0.8 refined
-**Evidence cut-off:** 2026-09-10
+**Evidence cut-off:** 2026-09-15
 **Do not treat as final novelty.**
 
 ## Current formulation
@@ -65,6 +65,8 @@
 - «взаимодополняемость lexical и semantic retrieval сама по себе ранее не исследовалась».
 
 ## Evidence boundary
+
+Национальные deep dives, завершённые 2026-09-11–2026-09-14 (Bakaev, Xusainova, Elov, Turayev, Axmedova, Abdisalomova, Allanazarova, Ishkobilov, USHRA, O-RAG, Urinov), укрепили существующую границу evidence, но не изменили **v0.8 refined**; см. [национальную матрицу evidence](NATIONAL_EVIDENCE_MATRIX_2026-09-14.md).
 
 Подробный синтез evidence, который привёл к этой формулировке:
 
