@@ -68,6 +68,18 @@
 
 Национальные deep dives, завершённые 2026-09-11–2026-09-14 (Bakaev, Xusainova, Elov, Turayev, Axmedova, Abdisalomova, Allanazarova, Ishkobilov, USHRA, O-RAG, Urinov), укрепили существующую границу evidence, но не изменили **v0.8 refined**; см. [национальную матрицу evidence](NATIONAL_EVIDENCE_MATRIX_2026-09-14.md).
 
+Международные deep dives от **2026-09-15** дополнительно закрывают общие притязания на новизну обучения взаимодополняемости, интеграции представлений и fusion, но не закрывают morphology-induced interaction с одним фиксированным semantic dense retriever. **v0.8 refined остаётся без изменений и provisional**; уточнения экспериментальных контролей зафиксированы в [PROJECT_STATE](../PROJECT_STATE.md) и [GAP_BOUNDARY](GAP_BOUNDARY_2026-09-10.md).
+
+Завершённые международные карточки:
+
+- [Posokhov et al. — Query-Adaptive Hybrid Search](../literature/deep-dives/2026_Posokhov_Query_Adaptive_Hybrid_Search.md).
+- [Gao et al. — CLEAR](../literature/deep-dives/2021_Gao_CLEAR_Semantic_Residual_Embeddings.md).
+- [Lin & Lin — DHR](../literature/deep-dives/2023_Lin_Lin_Dense_Representation_Framework_DHR.md).
+- [Chen et al. — BGE-M3](../literature/deep-dives/2024_Chen_BGE_M3_Embedding.md).
+- [Sheng-Chieh Lin — PhD](../literature/deep-dives/2024_Sheng_Chieh_Lin_PhD_Robust_Dense_Retrieval.md).
+- [Munetsi et al. — preliminary Shona IR study](../literature/deep-dives/2026_Munetsi_Mukande_OConnor_Shona_Morphology_Aware_IR.md).
+- [Bruch, Gai & Ingber — fusion functions](../literature/deep-dives/2023_Bruch_Gai_Ingber_Fusion_Functions_Hybrid_Retrieval.md).
+
 Подробный синтез evidence, который привёл к этой формулировке:
 
 - `research/GAP_BOUNDARY_2026-09-10.md`

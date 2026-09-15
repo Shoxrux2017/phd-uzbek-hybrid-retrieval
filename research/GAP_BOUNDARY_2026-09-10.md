@@ -22,7 +22,11 @@ The project can no longer claim novelty from any of the following by themselves:
 - fixed weighted fusion or RRF;
 - query-dependent retrieval strategy selection;
 - query-type analysis in general;
-- lexical–semantic complementarity as a general research idea.
+- lexical–semantic complementarity as a general research idea;
+- complementarity-aware component training;
+- unified/joint lexical–semantic representation;
+- query-adaptive fusion or Query-Driven Alpha Prediction;
+- unified multilingual dense / learned sparse / multi-vector retrieval.
 
 The strongest surviving research question is an **interaction/decomposition problem**:
 
@@ -288,14 +292,13 @@ See:
 
 ### 3.6 Munetsi, Mukande & O'Connor (SIGIR 2026), Shona
 
-**Reliability:** A.
+**Reliability:** A, peer-reviewed SIGIR; **4-page preliminary study**. [Deep dive COMPLETED 2026-09-15](../literature/deep-dives/2026_Munetsi_Mukande_OConnor_Shona_Morphology_Aware_IR.md).
 
-Verified SIGIR paper:
+Established within this preliminary scope:
 
-- low-resource Shona IR;
-- sparse and dense retrieval models;
-- morphology identified as a direct retrieval challenge;
-- evidence that modern IR research already treats morphology-sensitive retrieval behavior as a low-resource problem.
+- ~5,000 Shona documents and 75 topics; BM25 / ColBERT-v2 / dense-model comparison with manual relevance judgments;
+- morphology-sensitive failure analysis identifies surface variation as a retrieval challenge;
+- a larger morphology-aware benchmark/framework is **proposed**; stemming/lemmatization are future-work options, not implemented experimental conditions.
 
 Critical consequence:
 
@@ -303,7 +306,9 @@ Critical consequence:
 
 Residual:
 
-- the paper is a preliminary study and does not provide the complete `raw/stem/lemma × fixed dense × complementarity decomposition` required by the current Uzbek gap.
+- no controlled `raw/stem/lemma` intervention and no BM25+dense hybrid fusion in the main table;
+- no morphology-conditioned unique-hit/overlap/oracle-union/hybrid-gain decomposition;
+- shallow top-10 pooling and incompletely specified assessors/agreement/adjudication limit Recall and set-coverage interpretation. The Uzbek benchmark needs deeper pooling and an explicit annotation protocol; this paper does not prove stemming/lemmatization gains.
 
 DOI: `10.1145/3805712.3808522`.
 
@@ -343,9 +348,57 @@ See:
 
 `literature/deep-dives/2026_Beta_GreekBarRetrieval.md`.
 
+### 3.8 Gao et al. — CLEAR (ECIR 2021)
+
+**Reliability:** A; [deep dive COMPLETED 2026-09-15](../literature/deep-dives/2021_Gao_CLEAR_Semantic_Residual_Embeddings.md).
+
+**Occupied boundary:** generic lexical–semantic complementarity and complementarity-aware **training**. The dense semantic residual is trained against BM25 errors using error-based negatives and a residual margin.
+
+**Residual:** no raw/stem/lemma intervention or morphology-induced relevant-set decomposition. Retraining a separate dense component for each lexical variant would change both factors; the primary experiment must keep `D` fixed.
+
+### 3.9 Lin & Lin — DHR (TOIS 2023)
+
+**Reliability:** A; [deep dive COMPLETED 2026-09-15](../literature/deep-dives/2023_Lin_Lin_Dense_Representation_Framework_DHR.md).
+
+**Occupied boundary:** representation-level lexical–semantic integration, unified vector retrieval and joint training. Dense Lexical Representation demonstrates that **dense representation != semantic matching**.
+
+**Residual:** no controlled morphology intervention with the same independent semantic comparator. Define `D` as a **fixed retrieval-trained semantic dense retriever**, rather than identifying the signal solely by its vector format.
+
+### 3.10 Posokhov et al. — Query-Adaptive Hybrid Search (2026)
+
+**Reliability:** A; [deep dive COMPLETED 2026-09-15](../literature/deep-dives/2026_Posokhov_Query_Adaptive_Hybrid_Search.md).
+
+**Occupied boundary:** dynamic `alpha(q)`, Query-Driven Alpha Prediction and dense training targeted at BM25 failure cases. Fusion-level adaptation is already established.
+
+**Residual:** no `raw/stem/lemma × same fixed D` or morphology-conditioned unique hits, overlap, oracle union and hybrid gain. Its per-query best-alpha oracle concerns ranking under an optimal weight, not relevant-document coverage of the candidate union.
+
+### 3.11 Chen et al. — BGE-M3 (Findings of ACL 2024)
+
+**Reliability:** A; [deep dive COMPLETED 2026-09-15](../literature/deep-dives/2024_Chen_BGE_M3_Embedding.md).
+
+**Occupied boundary:** one multilingual model supports dense, learned sparse and multi-vector retrieval with joint training/self-distillation.
+
+**Residual/design consequence:** no Uzbek retrieval evaluation or controlled morphology-induced decomposition. Dense-only is a candidate `D` requiring Uzbek pilot validation; All adds sparse/multi-vector signals and should not be the primary causal comparator. The BM25 tokenizer/analyzer comparison changes multiple preprocessing operations, so it motivates explicit preprocessing control without proving a stemming-specific effect.
+
+### 3.12 Sheng-Chieh Lin — PhD (Waterloo 2024)
+
+**Reliability:** A, officially defended PhD; [deep dive COMPLETED 2026-09-15](../literature/deep-dives/2024_Sheng_Chieh_Lin_PhD_Robust_Dense_Retrieval.md).
+
+**Occupied boundary:** robustness, domain/language transfer and preservation of lexical/semantic evidence are established dense-retrieval concerns. Strong English/BEIR or multilingual results do not establish Uzbek effectiveness.
+
+**Residual/design consequence:** no Uzbek `raw/stem/lemma × fixed D` experiment. Validate candidates on Uzbek pilot/dev, select primary `D` under a predefined rule, then freeze it. Structural lesson: `problem → evidence of limitation → controlled experiment → method only if justified`.
+
+### 3.13 Bruch, Gai & Ingber — Fusion Functions (TOIS 2023)
+
+**Reliability:** A; [deep dive COMPLETED 2026-09-15](../literature/deep-dives/2023_Bruch_Gai_Ingber_Fusion_Functions_Hybrid_Retrieval.md). Official ACM publication: **August 2023**; some indexes associate Volume 42(1) with **2024**.
+
+**Occupied boundary:** fixed weighted fusion, normalization, convex-combination/RRF comparison and global-alpha tuning. Normalized convex fusion is a strong interpretable baseline with sample-efficient tuning in the tested settings; RRF has parameters, loses score-distance information and can be sensitive to domain transfer.
+
+**Residual/design consequence:** the paper varies fusion with fixed components, not lexical morphology. Candidate-union coverage and fusion ranking are separate levels. The primary Uzbek comparison should freeze `D`, candidate depth `k`, normalization, formula and one global validation-selected `alpha` across raw/stem/lemma; RRF is a secondary robustness control. The best-alpha oracle is not oracle union.
+
 ---
 
-## 4. Claim-status matrix after the 2026-09-10 search
+## 4. Claim-status matrix after the 2026-09-10 search and 2026-09-15 deep dives
 
 | Candidate novelty/gap claim | Status |
 |---|---|
@@ -359,6 +412,12 @@ See:
 | Query-dependent hybrid retrieval is new | **REJECTED** |
 | Query-type lexical/dense analysis is new | **REJECTED** |
 | Complementarity itself is a new research concept | **REJECTED** |
+| Complementarity-aware dense training is new | **REJECTED** — CLEAR; Posokhov |
+| Unified/joint lexical–semantic representation is new | **REJECTED** — DHR |
+| Unified multilingual dense / learned sparse / multi-vector retrieval is new | **REJECTED** — BGE-M3 |
+| Dense robustness/multilingual transfer is an unstudied concern | **REJECTED** — Lin PhD |
+| Fixed weighted fusion, normalization or global-alpha tuning is new | **REJECTED** — Bruch |
+| Munetsi already demonstrates raw/stem/lemma or BM25+dense fusion gains | **NOT ESTABLISHED** — preliminary comparison; morphology normalization is future work |
 | For Uzbek, morphology-induced change in lexical–dense complementarity is established | **NOT FOUND** |
 | `BM25_raw/stem/lemma + same dense` with controlled fusion and overlap decomposition for Uzbek | **NOT FOUND** |
 | Unique relevant hits / overlap / oracle union as morphology changes for Uzbek | **NOT FOUND** |
@@ -392,7 +451,7 @@ Potential additional control:
 
 ### Fixed semantic comparator
 
-Choose at least one modern retrieval-trained multilingual dense retriever `D` and hold it constant when attributing morphology effects.
+Pilot/dev-validate candidate retrieval-trained multilingual semantic dense retrievers for Uzbek, select primary `D` under a predefined rule and freeze its checkpoint, mode and input preprocessing before the held-out morphology experiment. BGE-M3 Dense and multilingual E5 are candidate families; no Uzbek winner is established. BGE-M3 All is unsuitable as the primary causal comparator because it adds sparse and multi-vector signals.
 
 A second modern dense model may be used for robustness, but the primary interaction analysis must not change dense model and morphology at the same time.
 
@@ -402,7 +461,9 @@ A second modern dense model may be used for robustness, but the primary interact
 `H_stem = fusion(BM25_stem, D)`
 `H_lemma = fusion(BM25_lemma, D)`.
 
-Fusion/normalization settings must be held constant or tuned under a controlled validation protocol.
+Provisional primary control: **normalized convex combination** with the same formula, normalization rule, candidate depth `k` and **one global `alpha` selected on validation only** across all three conditions. Form `top-k BM25_m ∪ top-k D` and specify how both scores are obtained for union candidates before normalization/fusion. Hold non-morphological BM25 preprocessing constant and document tokenization, script/Unicode normalization and stop-word handling.
+
+RRF is a **secondary robustness control**, with its rank-offset parameter specified and the same candidate depth. An optional secondary practical experiment may independently validation-tune `alpha_raw`, `alpha_stem`, `alpha_lemma`; report it separately from the primary causal comparison.
 
 ### Main explanatory measurements
 
@@ -417,6 +478,8 @@ For each query and each morphology condition:
 - oracle union/upper bound;
 - incremental hybrid gain;
 - statistical comparison across queries.
+
+Candidate-set complementarity/coverage must be analyzed separately from fusion ranking quality. Oracle union is not a per-query best-alpha oracle. Reliable unique-hit, Recall and oracle-union estimates require deeper multi-system pooling than top-10, explicit assessors/agreement/adjudication and transparent qrels coverage limits.
 
 ### Candidate Uzbek query factors
 
@@ -463,4 +526,16 @@ If baseline experiments show that morphology does **not** change lexical–seman
 - **Aboasal et al.:** B; current project analysis relies primarily on verified official abstract/metadata, so methods not exposed there must not be invented.
 - **UPERF:** B; full paper inspected, but evaluation is largely Recall@5 and statistical significance is not clearly specified.
 - **Kazi & Khoja 2026:** A; strong journal boundary evidence, but does not by itself establish the current morphology-induced complementarity interaction.
-- **Munetsi et al. 2026:** A; SIGIR evidence that morphology-aware low-resource IR is already an active research direction.
+- **Munetsi et al. 2026:** A as a peer-reviewed SIGIR source, but a 4-page preliminary study with shallow pooling; no implemented raw/stem/lemma or main-table hybrid fusion evidence.
+
+---
+
+## 9. Verdict after the 2026-09-15 international deep dives
+
+The targeted wave is substantially completed. Generic training, representation and fusion novelty routes are more clearly occupied, while no reviewed work closes the controlled chain:
+
+`morphological representation change → lexical relevant-set change → overlap/unique-hit change versus the SAME fixed semantic D → incremental hybrid-gain change → relation to interpretable Uzbek query characteristics`.
+
+The immediate bottleneck is benchmark/qrels plus pilot evidence. This is a provisional literature boundary, not proof of exhaustive absence or final novelty.
+
+**v0.8 refined survives unchanged.**

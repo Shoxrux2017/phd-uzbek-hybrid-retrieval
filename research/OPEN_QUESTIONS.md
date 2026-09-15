@@ -38,51 +38,27 @@
 
 ### A3. Query-Adaptive Hybrid Search 2026
 
-Нужно глубоко разобрать:
+**COMPLETED 2026-09-15 — HYB-009, A:** [deep-dive card](../literature/deep-dives/2026_Posokhov_Query_Adaptive_Hybrid_Search.md).
 
-- Query-Driven Alpha Prediction;
-- входные query features/representation;
-- antagonist negative sampling;
-- MIRACL/MLDR experimental design;
-- fixed-fusion baselines;
-- насколько выигрыш устойчив across languages/domains;
-- какие свойства запроса коррелируют с alpha;
-- что можно и нельзя перенести на Uzbek.
+Query-Driven Alpha Prediction, dynamic `alpha(q)` and dense training on BM25 failures are established. No raw/stem/lemma × same fixed D or morphology-conditioned set decomposition. Its per-query best-alpha oracle is not oracle union. No remaining literature blocker for the baseline pilot; recheck the exact inferential test only if a statistical-significance claim is needed in later prose.
 
 ### A4. CLEAR
 
-Нужно понять:
+**COMPLETED 2026-09-15 — HYB-003, A:** [deep-dive card](../literature/deep-dives/2021_Gao_CLEAR_Semantic_Residual_Embeddings.md).
 
-- semantic residual objective;
-- связь с BM25;
-- как строятся negatives;
-- где именно появляется complementarity;
-- baselines;
-- datasets;
-- ablation;
-- чем CLEAR отличается от simple fusion.
+Semantic residual training explicitly optimizes complementarity to BM25. Generic complementarity-aware training is occupied; morphology-induced change remains untested. Keep the same semantic `D` across morphology conditions rather than retraining a residual model for each one.
 
 ### A5. DHR / Lin & Lin
 
-Нужно подробно понять:
+**COMPLETED 2026-09-15 — HYB-006, A:** [deep-dive card](../literature/deep-dives/2023_Lin_Lin_Dense_Representation_Framework_DHR.md).
 
-- Dense Lexical Representation;
-- Dense Hybrid Representation;
-- index/search mechanism;
-- representation construction;
-- multilingual results;
-- robustness claims;
-- насколько эта архитектура релевантна Uzbek.
+DLR/DHR establish representation-level lexical–semantic integration and joint training; dense representation != semantic matching. The primary comparator must be a fixed retrieval-trained semantic dense retriever. No controlled raw/stem/lemma experiment is reported.
 
 ### A6. BGE-M3
 
-Нужно установить:
+**COMPLETED 2026-09-15 — HYB-007, A:** [deep-dive card](../literature/deep-dives/2024_Chen_BGE_M3_Embedding.md).
 
-- sparse/dense/multi-vector mechanisms;
-- hybrid use in original experiments;
-- language coverage vs actual Uzbek evaluation;
-- fine-tuning requirements;
-- feasibility as a strong experimental baseline.
+Unified dense / learned sparse / multi-vector retrieval is established, but the paper has no Uzbek retrieval evaluation. BGE-M3 Dense is a pilot candidate; All is unsuitable as the primary causal comparator. Candidate selection and preprocessing controls are experimental-resource questions in section D.
 
 ### A7. Uzbek morphology
 
@@ -137,6 +113,12 @@
 - [Allanazarova](../literature/deep-dives/2026_Allanazarova_Uzbek_Sentiment_SentiUzNet.md): **B pending final-defense verification**, background only; clarify merged-review versus sentiment-experiment counts if cited.
 
 These completed deep dives establish paraphrase/coreference/sentiment evidence, not corpus-level retrieval effectiveness.
+
+### A11. Completed international structural and methodology cards
+
+- **PHD-INT-001 — Sheng-Chieh Lin PhD: COMPLETED 2026-09-15, A**, [card](../literature/deep-dives/2024_Sheng_Chieh_Lin_PhD_Robust_Dense_Retrieval.md). Robust transfer requires an Uzbek pilot/dev validation gate before freezing `D`; the structural lesson is experiment before method. No uncompleted literature blocker remains for this dissertation.
+- **MORPH-004 — Munetsi et al.: COMPLETED 2026-09-15, A**, [card](../literature/deep-dives/2026_Munetsi_Mukande_OConnor_Shona_Morphology_Aware_IR.md). Four-page preliminary Shona comparison with morphology-sensitive failures; stemming/lemmatization are future benchmark work. No implemented raw/stem/lemma or BM25+dense fusion in the main table. Pooling and annotation lessons are tracked in section D.
+- **HYB-005 — Bruch, Gai & Ingber: COMPLETED 2026-09-15, A**, [card](../literature/deep-dives/2023_Bruch_Gai_Ingber_Fusion_Functions_Hybrid_Retrieval.md). Normalized convex fusion and global-alpha tuning are established; RRF is parametric. Candidate-set coverage differs from fusion ranking; protocol details remain to be specified in section D.
 
 ## B. Turkic / morphology-aware IR search still needed
 
@@ -193,12 +175,36 @@ Broad national synthesis is **provisionally saturated**: see the [national evide
 - как делать per-query error analysis;
 - как избежать leakage при synthetic query generation.
 
+### D1. Uzbek validation gate for the semantic comparator
+
+- Какие retrieval-trained multilingual candidates включить в pilot: BGE-M3 Dense, multilingual E5 и, при обосновании, ещё один ретривер? Уточнить checkpoint, retrieval mode, требования к ресурсам и обработку входа.
+- Какое минимальное evidence достаточно, чтобы считать `D` убедительным для Uzbek: объём и покрытие dev/pilot, заранее выбранные IR-метрики, величина/неопределённость эффекта и анализ ошибок? Высокий English/BEIR score, STS или заявленная multilingual coverage сами по себе недостаточны; превосходство над BM25 на каждом запросе не предполагается.
+- Как зафиксировать правило выбора `D` без test leakage и настройки отдельно под raw/stem/lemma? После выбора заморозить тот же semantic dense retriever, mode и preprocessing для основного held-out сравнения.
+
+### D2. Pooling and annotation resources
+
+- Какую глубину multi-system pooling выбрать, какие runs включить и сколько пар «запрос–документ» разметить? Для reliable unique hits / Recall / oracle union нужен более глубокий pool, чем top-10; определить критерий достаточности и остаточные ограничения неполной qrels.
+- Сколько assessors нужно, какую долю размечать независимо несколькими экспертами, как определить relevance scale и инструкции?
+- Как измерять inter-annotator agreement, разрешать расхождения через adjudication и документировать число итоговых judgments?
+
+### D3. Primary fixed-alpha fusion protocol — provisional
+
+- Какую нормализацию и точную convex-combination formula зафиксировать, какой компонент обозначать весом `alpha`, как обрабатывать равные/вырожденные scores и tie-breaking?
+- Как выбрать **один global `alpha` на validation**: метрика, сетка/процедура поиска, правило агрегации по morphology conditions и разрешения равенств? В основном causal experiment использовать **одинаковые `D`, global `alpha`, normalization, formula и candidate depth `k`** для raw/stem/lemma.
+- Какой `k` выбрать для `top-k BM25_m ∪ top-k D`, как получить оба scores для всех кандидатов и отделить pooling depth для qrels от retrieval candidate depth? Одинаковый `k` не означает одинаковый состав/размер union: изменение состава — предмет измерения.
+- Какие non-morphological preprocessing операции удерживать постоянными: tokenization, script/Unicode/apostrophe normalization и stop-word handling?
+- Какой rank-offset parameter задать для **secondary RRF robustness baseline** при том же `k`? RRF не является parameter-free.
+- Нужен ли после главного сравнения **secondary practical experiment** с независимо validation-tuned `alpha_raw`, `alpha_stem`, `alpha_lemma`? Его результаты нужно показывать отдельно: он одновременно меняет morphology и fusion weight.
+
+Candidate-set complementarity и oracle union измеряют доступное релевантное evidence; fusion ranking и per-query best-alpha oracle — его упорядочение. Эти величины не взаимозаменяемы. RQ1–RQ3 и H1–H3 остаются **provisional / working v0.1**, без изменения формулировок.
+
 ## E. Citation verification
 
 Особое внимание:
 
 - USHRA / O-RAG: verified ACM ICFNDS ’25, publication year **2025**, pages/DOIs recorded in completed cards; secondary 2026 appearance dates do not change the year;
 - morphology-oriented STS: ICFNDS '25 vs 2026 metadata remains a separate open verification item;
+- Bruch, Gai & Ingber: основной год синхронизирован как **2023** по официальной ACM publication date **August 2023**; Volume 42(1) в части индексов относится к **2024** — сохранить metadata note при подготовке библиографии;
 - официальный ACM record должен иметь приоритет над агрегаторами;
 - полные страницы, volume/issue и DOI национальных/турецких источников;
 - preprint vs peer-reviewed version для UzBERT/Uzbek embeddings.
