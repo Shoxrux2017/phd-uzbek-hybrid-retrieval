@@ -165,15 +165,18 @@ Broad generic gap-search and broad national evidence synthesis have reached **pr
 
 Scientific audit/refinement of provisional RQ1–RQ3 / H1–H3 is **completed as of 2026-09-15**. Current **working RQ/H v0.2**, including null hypotheses, falsifiability and measurement logic, is recorded in [OPEN_QUESTIONS](research/OPEN_QUESTIONS.md). These remain provisional, not final dissertation RQs or established findings; **v0.8 refined remains unchanged and provisional**.
 
-Immediate next step: create **`BENCHMARK_QRELS_PROTOCOL_v0.1`** to design the corpus, retrieval unit, query set, morphology/query strata, pooling, qrels, assessors, relevance scale, adjudication, inter-annotator agreement, dev/test split, metrics, statistical tests, leakage controls, candidate depth and dense-baseline pilot protocol. The protocol has not yet been created; numerical equivalence margins / SESOI and concrete statistical tests remain to be specified there.
+**[BENCHMARK_QRELS_PROTOCOL_v0.1](research/BENCHMARK_QRELS_PROTOCOL_v0.1.md) has been created** and remains **WORKING / PROVISIONAL**. The design is sufficiently specified to begin resource selection and dev-benchmark construction; the held-out confirmatory experiment is not yet authorized by the protocol's validity gates.
 
-Next priorities:
+Next priorities, following [protocol Section 31](research/BENCHMARK_QRELS_PROTOCOL_v0.1.md#31-immediate-next-implementation-sequence):
 
-1. Design `BENCHMARK_QRELS_PROTOCOL_v0.1` under working RQ/H v0.2.
-2. Select and justify BM25 preprocessing variants.
-3. Pilot/dev-validate candidate semantic dense retrievers for Uzbek, select primary `D` by a predefined rule and freeze it for the main interaction analysis.
-4. Specify primary normalized convex fusion with one global alpha, normalization and candidate depth across morphology conditions; use RRF as a secondary robustness control.
-5. Run pilot experiments to test whether morphology actually changes lexical–semantic complementarity.
-6. Reassess the gap if the interaction is weak/unstable; convincing support for practically negligible complementarity changes requires revision before inventing a new method. Insufficient evidence alone does not prove no effect.
+1. Select and freeze corpus/resources, define the common retrieval unit, and independently select/freeze the Uzbek tokenizer, stemmer and lemmatizer before comparative dev IR analysis.
+2. Construct the initial dev benchmark/qrels and complete prospective power/sensitivity analysis before freezing the final query count/split and confirmatory scope.
+3. Follow the phased pilot/dev validation and judgment-coverage gates: select shared BM25 parameters, then select/freeze one dense retriever `D`, then select one global hybrid `alpha` across morphology conditions.
+4. Complete and freeze the remaining protocol items in a pre-test revision, including independently justified final SESOI/equivalence margins and exact statistical/resampling implementations; create and version `EXPERIMENT_LOCK` before any test-label exposure to the investigator/research-tuning side.
+5. Only after lock, follow the default held-out workflow: generate test runs/pool, annotate/adjudicate and freeze test qrels after coverage/quality checks, then run confirmatory evaluation for claims passing the protocol gates.
 
-The seven targeted international deep dives are complete. UZ-SEM-007 and targeted verification questions remain tracked in the index/open questions, but the immediate bottleneck is **benchmark/qrels + Uzbek pilot**, not broad literature search.
+Project sequence: `literature → evidence → gap v0.8 refined → RQ/H v0.2 → BENCHMARK_QRELS_PROTOCOL_v0.1 → resource selection / dev benchmark construction → pilot/dev validation → pre-test protocol freeze → EXPERIMENT_LOCK → held-out controlled experiment`.
+
+Reassess the gap if the interaction is weak/unstable; convincing support for practically negligible complementarity changes requires revision before inventing a new method. Insufficient evidence alone does not prove no effect.
+
+The seven targeted international deep dives are complete. UZ-SEM-007 and targeted verification questions remain tracked in the index/open questions; the immediate bottleneck is **resource selection / dev-benchmark construction, followed by Uzbek pilot/dev validation**.
