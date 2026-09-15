@@ -12,6 +12,7 @@
 ## 1.1 Sheng-Chieh Lin, PhD, University of Waterloo, 2024
 
 **Topic:** robust dense retrieval; lexical–semantic matching/fusion.
+**Status:** A, defended PhD; [deep dive COMPLETED 2026-09-15](../literature/deep-dives/2024_Sheng_Chieh_Lin_PhD_Robust_Dense_Retrieval.md).
 
 Что важно:
 
@@ -19,9 +20,8 @@
 - Dense retrieval вводится как способ преодолеть term mismatch.
 - Затем анализируются ограничения dense retrieval: robustness, data/resources, transfer.
 - Lexical + semantic integration становится ответом на выявленную проблему, а не случайным дополнительным experiment.
-- Полезна для структуры: `problem → limitation → method → evidence`.
-
-**Deep dive priority:** very high.
+- Strong English/BEIR or multilingual transfer results do not establish Uzbek retrieval effectiveness: candidate semantic dense retrievers need an Uzbek pilot/dev validation gate before selecting and freezing primary `D`.
+- Полезна для структуры: `problem → evidence of limitation → controlled experiment → method only if justified`.
 
 ## 1.2 Minghan Li, PhD, University of Waterloo, 2024
 
@@ -585,11 +585,14 @@ Luan et al.:
 
 - sparse/dense representations are complementary.
 
-Bruch et al.:
+Bruch, Gai & Ingber (2023), **A** — [deep dive COMPLETED 2026-09-15](../literature/deep-dives/2023_Bruch_Gai_Ingber_Fusion_Functions_Hybrid_Retrieval.md):
 
-- systematic analysis of fusion functions;
-- convex combination vs RRF;
-- in their experiments learned convex combination can outperform RRF.
+- normalized convex combination is a strong, interpretable baseline; one global `alpha` can be tuned sample-efficiently in the tested settings;
+- RRF is parametric, discards score-distance information and can be sensitive to parameter/domain transfer;
+- candidate union determines available relevant evidence; fusion ranks that union. Candidate-set complementarity and fusion ranking quality require separate analysis;
+- provisional primary morphology control: same semantic `D`, candidate depth `k`, normalization, formula and global validation-selected `alpha` across `raw/stem/lemma`; RRF is secondary robustness control. Separately tuned weights belong to a secondary practical experiment.
+
+Metadata: official ACM publication is **August 2023**; some indexes assign Volume 42(1) to 2024.
 
 ## 7.2 Rank-level fusion
 
@@ -601,41 +604,36 @@ RRF (Cormack et al., SIGIR 2009):
 
 Important:
 
-RRF = strong baseline, **not novelty**.
+RRF = strong baseline, **not novelty and not parameter-free**; specify its rank-offset parameter and candidate depth.
 
 ## 7.3 Learned complementarity
 
-CLEAR:
+CLEAR (Gao et al., 2021), **A** — [deep dive COMPLETED 2026-09-15](../literature/deep-dives/2021_Gao_CLEAR_Semantic_Residual_Embeddings.md):
 
-- semantic residual component is trained to complement lexical retrieval;
-- hybrid research question becomes not only `how to combine`, but `what additional evidence should the second model learn`.
-
-**Deep dive priority:** very high.
+- semantic residual training targets BM25 errors through error-based negatives and a lexical-score-dependent margin;
+- **training-level complementarity** is already an explicit research objective; generic complementarity-aware training cannot be claimed as novelty;
+- no morphology-induced complementarity experiment. Retraining a dense component per morphology variant would confound the main comparison; keep the same frozen `D`.
 
 ## 7.4 Representation-level integration
 
-Lin & Lin DLR/DHR:
+Lin & Lin DLR/DHR (2023), **A** — [deep dive COMPLETED 2026-09-15](../literature/deep-dives/2023_Lin_Lin_Dense_Representation_Framework_DHR.md):
 
-- Dense Lexical Representation;
-- Dense Hybrid Representation;
-- integration happens at representation level, not only post-hoc fusion.
-
-**Deep dive priority:** very high.
+- Dense Lexical Representation preserves lexical identity in a dense numerical representation: **dense representation != semantic matching**;
+- Dense Hybrid Representation unifies lexical and semantic signals; joint lexical–semantic training and representation-level integration already exist;
+- no controlled `raw/stem/lemma × same fixed D`. Define `D` as a **fixed retrieval-trained semantic dense retriever**, independent of the lexical morphology intervention.
 
 ## 7.5 Unified multi-function retrieval
 
-BGE-M3:
+BGE-M3 (Chen et al., 2024), **A** — [deep dive COMPLETED 2026-09-15](../literature/deep-dives/2024_Chen_BGE_M3_Embedding.md):
 
-- dense;
-- sparse;
-- multi-vector;
-- multilingual.
+- one multilingual encoder supports dense, learned sparse and multi-vector retrieval, jointly trained with self-knowledge distillation;
+- **BGE-M3 Dense** is a candidate comparator, but the paper has **no Uzbek retrieval evaluation**; validate on Uzbek pilot/dev before selection;
+- **BGE-M3 All** includes sparse and multi-vector signals and should not be the primary causal comparator;
+- BM25 tokenizer/preprocessing changes can materially affect results; explicitly control tokenization, normalization and stop-word handling when varying morphology.
 
 Important:
 
 BGE-M3 should not be described as identical to DHR. It is a unified multi-function model, not necessarily one identical hybrid representation.
-
-**Deep dive priority:** very high.
 
 ## 7.6 Query-dependent/adaptive retrieval
 
@@ -643,13 +641,11 @@ Arabzadeh et al., CIKM 2021:
 
 - per-query selection between sparse/dense/hybrid strategy.
 
-Query-Adaptive Hybrid Search, 2026:
+Query-Adaptive Hybrid Search (Posokhov et al., 2026), **A** — [deep dive COMPLETED 2026-09-15](../literature/deep-dives/2026_Posokhov_Query_Adaptive_Hybrid_Search.md):
 
-- Query-Driven Alpha Prediction;
-- dynamic `alpha(q)`;
-- therefore dynamic per-query weighting itself is not a new idea.
-
-**Deep dive priority:** very high.
+- Query-Driven Alpha Prediction and dynamic `alpha(q)` establish **fusion-level adaptation**; dense training can also target BM25 failure cases;
+- neither adaptive weighting nor complementarity-aware training is a standalone novelty route;
+- no `raw/stem/lemma × same fixed D` or morphology-conditioned relevant-set decomposition. Its per-query best-alpha oracle is distinct from oracle union.
 
 ---
 
@@ -722,7 +718,7 @@ These distinctions must survive all future writing:
 4. `RAG answer accuracy != retrieval effectiveness`.
 5. `cross-encoder usually = reranking, not full-corpus first-stage retrieval`.
 6. `sparse != non-neural`.
-7. `dense != universally semantic-superior`.
+7. `dense representation != semantic matching`; numerical format alone does not identify the retrieval signal or guarantee superiority.
 8. `morphological normalization != semantic matching`.
 9. `hybrid Uzbek retrieval exists`; gap must be narrower.
 10. `adaptive alpha exists`; possible novelty must be language/problem-specific and empirically justified.
@@ -731,6 +727,9 @@ These distinctions must survive all future writing:
 13. `BM25 vs vector comparison != hybrid fusion`.
 14. `search deployment/productivity claims != qrels-based retrieval effectiveness`; `NLP analyzer accuracy/F1 != MAP/nDCG/Recall`.
 15. `retrieval != reranking`; ontology/reranking gains cannot automatically be attributed to lexical–semantic fusion.
+16. `per-query best-alpha oracle != oracle union`.
+17. `candidate-set complementarity != fusion ranking quality`.
+18. `multilingual support != Uzbek retrieval validation`; BGE-M3 Dense remains a candidate, not an established best Uzbek retriever.
 
 ---
 
@@ -773,11 +772,13 @@ The controlled logic is:
 
 `BM25_raw ↔ BM25_stem ↔ BM25_lemma`
 
-with the same fixed dense comparator `D`, followed by:
+with the same fixed retrieval-trained semantic dense retriever `D`, selected through Uzbek pilot/dev validation, followed by:
 
 `BM25_raw + D`
 `BM25_stem + D`
 `BM25_lemma + D`.
+
+Provisional primary fusion control: normalized convex combination with the same global validation-selected `alpha`, normalization rule and candidate depth `k` across all three conditions. RRF remains a secondary robustness control; independently tuned `alpha_raw/stem/lemma` would answer a separate practical question.
 
 The main explanatory analysis should go beyond aggregate MAP/nDCG/Recall and include, where qrels permit:
 
@@ -829,11 +830,14 @@ Consequence: morphology-aware BM25 + modern semantic embeddings + hybrid retriev
 
 ### Munetsi, Mukande & O'Connor — Shona, SIGIR 2026
 
-- direct morphology-aware low-resource IR research;
-- BM25 plus modern neural retrieval comparators;
-- standard retrieval metrics.
+[Deep dive COMPLETED 2026-09-15](../literature/deep-dives/2026_Munetsi_Mukande_OConnor_Shona_Morphology_Aware_IR.md), **A**, with preliminary experimental scope:
 
-Consequence: morphology-conditioned retrieval behavior is already a mainstream modern IR research question.
+- peer-reviewed **4-page preliminary study** comparing BM25, ColBERT-v2 and dense models with manual qrels and morphology-sensitive failure analysis;
+- stemming/lemmatization belong to a **proposed future morphology-aware benchmark/framework**; no implemented controlled `raw/stem/lemma` comparison;
+- no BM25+dense hybrid fusion in the main table and no morphology-conditioned complementarity decomposition;
+- shallow top-10 pooling motivates deeper multi-system pooling and explicit assessor/agreement/adjudication procedures for reliable Uzbek unique-hit, Recall and oracle-union analysis.
+
+Consequence: morphology-sensitive low-resource IR is an active SIGIR line, but this study does not establish gains from stemming/lemmatization or close the current controlled interaction question.
 
 ### GreekBarRetrieval — Greek statutory retrieval, 2026 preprint
 
@@ -858,6 +862,8 @@ The analyzed manuscript describes:
 It remains D-level until official final/defense evidence is verified, but it is a serious warning against broad claims that Uzbek lacks morphology-aware hybrid retrieval.
 
 ## 13.2 Current gap boundary
+
+The seven international deep dives completed **2026-09-15** (sections 1.1, 7 and 13.1) further close generic training, representation and fusion novelty routes. **v0.8 refined survives unchanged** as a provisional morphology-induced interaction question; the next bottleneck is benchmark/qrels plus pilot evidence.
 
 The current project did **not** find a verified Uzbek analogue that simultaneously:
 

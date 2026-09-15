@@ -17,7 +17,7 @@ Legend:
 
 | ID | Work | Year | Focus | Reliability | Priority | Current role |
 |---|---|---:|---|---|---|---|
-| PHD-INT-001 | Sheng-Chieh Lin — *Building a Robust Retrieval System with Dense Retrieval Models* (Waterloo) | 2024 | Dense robustness, lexical-semantic integration | A | CRITICAL | Main modern IR PhD structural/reference anchor |
+| PHD-INT-001 | Sheng-Chieh Lin — *Building a Robust Retrieval System with Dense Retrieval Models* (Waterloo) — [deep dive](deep-dives/2024_Sheng_Chieh_Lin_PhD_Robust_Dense_Retrieval.md) | 2024 | Dense robustness, lexical-semantic integration | A | CRITICAL | Deep dive COMPLETED 2026-09-15. Main structural PhD anchor: problem → evidence of limitation → controlled experiment → method only if justified. Dense transfer requires Uzbek pilot/dev validation before selecting and freezing D. |
 | PHD-INT-002 | Minghan Li — *Pretrained Transformers for Efficient and Robust Information Retrieval* (Waterloo) | 2024 | Dense/sparse/hybrid/multi-vector robustness | A | VERY HIGH | Architecture taxonomy, representation limitations |
 | PHD-INT-003 | Georgios Sidiropoulos — *Improving the Robustness and Effectiveness of Neural Retrievers in Noisy and Low-Resource Settings* (UvA) | 2025 | Low-resource neural retrieval | A | VERY HIGH | Low-resource framing |
 | PHD-UZ-001 | I. I. Bakaev — *Models and Algorithms of Morphological Analysis of Uzbek Word Forms* — [deep dive](deep-dives/2021_Bakaev_Uzbek_Morphology_Search.md) | 2021 | Uzbek morphology and search applications | A | CRITICAL | Defended PhD; Morphoanalyzer and full-text/library deployment; analyzer accuracy and workflow gains are not qrels-based IR effectiveness. |
@@ -52,7 +52,7 @@ Legend:
 | MORPH-001 | Can et al. — *Information Retrieval on Turkish Texts* (JASIST) — [deep dive](deep-dives/2008_Can_Information_Retrieval_on_Turkish_Texts.md) | 2008 | A | CRITICAL | Deep dive completed 2026-09-02. Large Turkic/agglutinative IR study: morphology improves lexical retrieval in the tested setting; query length changes the observed stemming effect; elaborate lemmatization does not guarantee superiority; **BM25, semantic and hybrid retrieval were not evaluated**. |
 | MORPH-002 | Haddad & Bechikh Ali — *Performance of Turkish Information Retrieval: Evaluating the Impact of Linguistic Parameters and Compound Nouns* (CICLing/LNCS) — [deep dive](deep-dives/2014_Haddad_Bechikh_Ali_Performance_of_Turkish_IR.md) | 2014 | B | VERY HIGH | Deep dive completed 2026-09-04. Same Milliyet collection, now with TF-IDF, **BM25** and a classical language-model retrieval formulation. Zemberek gives the strongest BM25 MAP/bpref among the tested preprocessing configurations, while simple 4/5-prefix truncation remains highly competitive. Stop-word effects are small; compound-noun effects depend on model/configuration. **No paired significance test was reported; no semantic or hybrid retrieval was evaluated.** |
 | MORPH-003 | Kazi & Khoja — *UPERF: Urdu Proximity Enhanced Retrieval Framework* (PACLIC 2024) — [deep dive](deep-dives/2024_Kazi_Khoja_UPERF_Urdu_Retrieval.md) | 2024 | B | CRITICAL | Controlled Urdu document retrieval with raw/stemmed/lemmatized preprocessing across BM25, TF-IDF and embedding-based representations; query-type and weighted lexical–semantic combination evidence. No modern retrieval-trained dense comparator or morphology-conditioned overlap/unique-hit decomposition. |
-| MORPH-004 | Munetsi, Mukande, O'Connor — *Morphology-Aware Retrieval for Low-Resource Environments: Advancing Information Retrieval for Shona Language* (SIGIR 2026) | 2026 | A | CRITICAL | A-level evidence that morphology-aware low-resource IR is already a direct modern research line with BM25 and neural retrieval comparators. Does not close the controlled raw/stem/lemma × fixed-dense complementarity question. |
+| MORPH-004 | Munetsi, Mukande, O'Connor — *Morphology-Aware Retrieval for Low-Resource Environments: Advancing Information Retrieval for Shona Language* (SIGIR 2026) — [deep dive](deep-dives/2026_Munetsi_Mukande_OConnor_Shona_Morphology_Aware_IR.md) | 2026 | A | CRITICAL | Deep dive COMPLETED 2026-09-15. Peer-reviewed 4-page preliminary Shona IR study: BM25 / ColBERT-v2 / dense comparison, morphology-sensitive failure analysis and proposed future morphology-aware benchmark. No implemented raw/stem/lemma comparison or BM25+dense fusion in the main table; shallow top-10 pooling limits Recall/unique-hit/oracle-union evidence. |
 | MORPH-UZ-001 | Bakaev & Shafiev — full-text search with morphology — [deep dive](deep-dives/2021_Bakaev_Uzbek_Morphology_Search.md) | 2020 | B | HIGH | Stemmer + lemmatizer with term/field-weighted ranking; qualitative search examples, no BM25 or qrels-based IR evaluation. |
 | MORPH-UZ-002 | Bakaev PhD — [deep dive](deep-dives/2021_Bakaev_Uzbek_Morphology_Search.md) | 2021 | A | CRITICAL | Morphoanalyzer; genre-specific base-identification accuracy and real National Library deployment. The 9–11% catalog workflow/productivity gain is not retrieval effectiveness; no raw/stem/lemma × dense benchmark. |
 | MORPH-UZ-003 | Xusainova — lemmatization for Uzbek National Corpus search — [deep dive](deep-dives/2024_Xusainova_Uzbek_Tokenization_Stemming_Lemmatization.md) | 2023 | B/A- | HIGH | Lemmatization/search optimization evidence; related PhD's 97.5% measures stemmer/analyzer accuracy, not retrieval effectiveness. No controlled BM25/qrels benchmark; SEO != ad-hoc IR. |
@@ -110,13 +110,13 @@ Legend:
 |---|---|---:|---|---|---|
 | HYB-001 | Cormack, Clarke, Büttcher — RRF | 2009 | A | VERY HIGH | Rank fusion baseline |
 | HYB-002 | Luan et al. — *Sparse, Dense, and Attentional Representations for Text Retrieval* | 2021 | A | VERY HIGH | Sparse/dense complementarity, fusion |
-| HYB-003 | Gao et al. — CLEAR | 2021 | A | CRITICAL | Learned semantic residual complementarity |
+| HYB-003 | Gao et al. — CLEAR — [deep dive](deep-dives/2021_Gao_CLEAR_Semantic_Residual_Embeddings.md) | 2021 | A | CRITICAL | Deep dive COMPLETED 2026-09-15. Training-level complementarity: dense semantic residual learns to correct BM25 errors. Generic complementarity-aware training is occupied; no morphology-induced complementarity experiment. |
 | HYB-004 | Kuzi et al. — semantic + lexical matching | 2020 | B/C | MEDIUM | Hybrid ad-hoc retrieval analysis |
-| HYB-005 | Bruch, Gai, Ingber — *Analysis of Fusion Functions for Hybrid Retrieval* | 2024 | A | CRITICAL | Score fusion vs RRF, normalization/transfer |
-| HYB-006 | Lin & Lin — Dense Representation Framework / DHR | 2023 | A | CRITICAL | Representation-level lexical-semantic integration |
-| HYB-007 | Chen et al. — BGE-M3 / M3-Embedding | 2024 | A | CRITICAL | Dense+sparse+multi-vector unified model |
+| HYB-005 | Bruch, Gai, Ingber — *An Analysis of Fusion Functions for Hybrid Retrieval* — [deep dive](deep-dives/2023_Bruch_Gai_Ingber_Fusion_Functions_Hybrid_Retrieval.md) | 2023 | A | CRITICAL | Deep dive COMPLETED 2026-09-15. Normalized convex fusion, sample-efficient global alpha tuning, RRF parameter/transfer sensitivity; candidate-union coverage != fusion ranking. Primary morphology comparison should fix D, alpha, normalization and depth k. ACM: August 2023; Volume 42(1) is indexed as 2024 in some records. |
+| HYB-006 | Lin & Lin — Dense Representation Framework / DHR — [deep dive](deep-dives/2023_Lin_Lin_Dense_Representation_Framework_DHR.md) | 2023 | A | CRITICAL | Deep dive COMPLETED 2026-09-15. Unified lexical–semantic representation and joint training already exist; dense representation != semantic matching. Define D as a fixed retrieval-trained semantic dense retriever; no raw/stem/lemma intervention. |
+| HYB-007 | Chen et al. — BGE-M3 / M3-Embedding — [deep dive](deep-dives/2024_Chen_BGE_M3_Embedding.md) | 2024 | A | CRITICAL | Deep dive COMPLETED 2026-09-15. Unified multilingual dense / learned sparse / multi-vector retrieval with joint training. Dense-only is a candidate D requiring Uzbek validation; no Uzbek retrieval evaluation in the paper. All adds sparse/multi-vector signals and is unsuitable as the primary causal comparator; BM25 preprocessing must be controlled. |
 | HYB-008 | Arabzadeh, Yan, Clarke — query-based sparse/dense/hybrid strategy selection | 2021 | A | VERY HIGH | Query-dependent strategy already exists |
-| HYB-009 | Posokhov et al. — Query-Adaptive Hybrid Search | 2026 | A | CRITICAL | Dynamic `alpha(q)` already exists |
+| HYB-009 | Posokhov et al. — Query-Adaptive Hybrid Search — [deep dive](deep-dives/2026_Posokhov_Query_Adaptive_Hybrid_Search.md) | 2026 | A | CRITICAL | Deep dive COMPLETED 2026-09-15. Query-Driven Alpha Prediction, dynamic alpha(q) and dense training on BM25 failures already exist. No raw/stem/lemma × same fixed D or morphology-conditioned unique-hit/overlap/oracle-union analysis. |
 | HYB-010 | Kazi & Khoja — *Towards building Urdu language document retrieval framework* (*Computer Speech & Language*) | 2026 | A | CRITICAL | Multi-benchmark Urdu retrieval with lexical/statistical models, embedding features and SVMrank learned reranking. Strong low-resource lexical–semantic integration evidence; no verified full morphology × fixed-modern-dense complementarity decomposition. |
 | HYB-011 | Aboasal et al. — *Arabic Legal Information Retrieval: The Impact of Morphological Segmentation and Semantic Embeddings* — [deep dive](deep-dives/2026_Aboasal_Arabic_Legal_IR_Morphology_Semantic.md) | 2026 | B | CRITICAL | Farasa morphology + BM25 + modern embeddings (including BGE-M3/GTE/Ada/Mistral-embed) + hybrid legal retrieval. Kills broad morphology-aware BM25 + modern semantic + hybrid novelty claims; does not isolate morphology-induced complementarity structure. |
 | HYB-012 | Beta et al. — *GreekBarRetrieval: A Benchmark for Greek Statutory Retrieval* — [deep dive](deep-dives/2026_Beta_GreekBarRetrieval.md) | 2026 | C | CRITICAL | Preprint with three BM25 morphology/preprocessing variants, nine modern dense retrievers, fusion and query reformulation. Closest global gap killer found; no verified full unique-hit/overlap/oracle decomposition across morphology variants with the same dense comparator. |
@@ -190,14 +190,13 @@ Cards are linked in the corresponding rows above; repeated structural/morphology
 
 Synthesis: [National evidence matrix, 2026-09-14](../research/NATIONAL_EVIDENCE_MATRIX_2026-09-14.md). These additions strengthen the boundary without changing `v0.8 refined`.
 
+### International deep dives completed 2026-09-15
+
+**HYB-009, HYB-003, HYB-006, HYB-007, PHD-INT-001, MORPH-004 and HYB-005 — COMPLETED.** Cards and evidence limits are linked in the rows above. This substantially completes the targeted international wave; `v0.8 refined` remains unchanged. Benchmark/qrels and Uzbek dense pilot validation are the immediate bottleneck.
+
 ## Critical first wave — remaining deep dives
 
-1. HYB-009 — Query-Adaptive Hybrid Search
-2. HYB-003 — CLEAR
-3. HYB-006 — DHR / Lin & Lin
-4. HYB-007 — BGE-M3
-5. PHD-INT-001 — Sheng-Chieh Lin PhD
-6. UZ-SEM-007 — morphology-oriented Uzbek STS
+1. UZ-SEM-007 — morphology-oriented Uzbek STS
 
 Targeted follow-up verification for completed national cards is tracked in [OPEN_QUESTIONS](../research/OPEN_QUESTIONS.md).
 
@@ -210,7 +209,6 @@ Targeted follow-up verification for completed national cards is tracked in [OPEN
 - ANCE
 - Contriever
 - EntityQuestions
-- Bruch fusion analysis
 - SIGTURK Uzbek retrieval
 - BERTbek / SimRelUz / UZWORDNET.
 
@@ -222,3 +220,4 @@ Targeted follow-up verification for completed national cards is tracked in [OPEN
 2. UzBERT/Uzbek embeddings may remain preprints; do not silently upgrade their evidence level.
 3. For national PhDs use official OAK/university metadata where possible.
 4. For any strong numerical claim, verify primary/full text before putting it into final dissertation.
+5. Bruch, Gai & Ingber, DOI `10.1145/3596512`: use **2023**, following the official ACM publication date **August 2023**; some indexes associate Volume 42(1) with **2024**. Retain this discrepancy note when preparing the final bibliography.

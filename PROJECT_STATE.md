@@ -75,12 +75,23 @@ National deep dives completed 2026-09-11–2026-09-14 strengthen the existing bo
 
 ### International boundary
 
-New key gap killers:
+The targeted international deep-dive wave is **substantially completed as of 2026-09-15**; all seven new cards are integrated in the [master index](literature/MASTER_INDEX.md). **v0.8 refined remains unchanged** and provisional.
+
+Completed evidence/design update:
+
+- **CLEAR:** complementarity-aware dense training as a semantic residual to BM25 is already established.
+- **DHR:** unified lexical–semantic representation and joint training already exist; dense representation does not automatically mean semantic matching.
+- **Query-Adaptive Hybrid Search:** Query-Driven Alpha Prediction, dynamic `alpha(q)` and dense training on BM25 failure cases already exist.
+- **BGE-M3:** unified multilingual dense / learned sparse / multi-vector retrieval is established. Dense-only is a candidate `D` requiring Uzbek validation; All includes additional sparse/multi-vector signals.
+- **Sheng-Chieh Lin PhD:** dense robustness/transfer must be tested; English/BEIR strength does not establish Uzbek effectiveness. Structural lesson: `problem → evidence of limitation → controlled experiment → method only if justified`.
+- **Bruch, Gai & Ingber (2023):** normalized convex fusion is a strong interpretable control; RRF has parameters and loses score-distance information. Candidate-union coverage and fusion ranking are separate analytical levels.
+
+Closest morphology/low-resource boundary evidence:
 
 - **UPERF (Kazi & Khoja, PACLIC 2024):** raw/stem/lemma × BM25/TF-IDF/embeddings × query type + weighted combination in Urdu;
 - **Kazi & Khoja, Computer Speech & Language 2026:** multi-benchmark Urdu retrieval with lexical/embedding features and SVMrank reranking;
 - **Aboasal et al. 2026:** Farasa morphology + BM25 + modern embeddings (including BGE-M3/GTE/Ada/Mistral-embed) + hybrid Arabic legal retrieval;
-- **Munetsi et al., SIGIR 2026:** morphology-aware low-resource Shona retrieval as a direct modern IR research line;
+- **Munetsi et al., SIGIR 2026:** A-level, 4-page preliminary Shona BM25 / ColBERT-v2 / dense comparison with morphology-sensitive failure analysis; stemming/lemmatization are proposed future benchmark work, not implemented raw/stem/lemma conditions. No BM25+dense fusion in the main table; top-10 pooling limits set/Recall analysis;
 - **GreekBarRetrieval, 2026 preprint:** three BM25 morphology/preprocessing variants + nine modern dense retrievers + fusion + query reformulation in one statutory-retrieval benchmark.
 
 Full synthesis: `research/GAP_BOUNDARY_2026-09-10.md`.
@@ -130,6 +141,17 @@ with the same dense retriever `D`, then:
 
 Aggregate metrics alone are insufficient for the main explanatory claim. The analysis should include per-query overlap, unique relevant hits, oracle union and incremental hybrid gain where the qrels permit this.
 
+### Provisional experimental design implications — 2026-09-15
+
+These are design controls for testing the working gap, **not final novelty or established Uzbek results**.
+
+1. Validate candidate retrieval-trained semantic dense retrievers on Uzbek pilot/dev data before choosing `D`; BGE-M3 Dense and multilingual E5 are candidate families, not predetermined winners.
+2. After selection, freeze the same `D`, its mode and input preprocessing across every lexical morphology condition. BGE-M3 All is unsuitable as the primary comparator because it adds sparse/multi-vector signals.
+3. Use **normalized convex combination** as the provisional primary fusion control.
+4. Keep the same **global `alpha`**, selected on validation only, the same normalization rule, fusion formula and candidate depth `k` across `raw/stem/lemma`. Explicitly control BM25 tokenization, script/Unicode normalization and stop-word handling. Independently tuned `alpha_raw`, `alpha_stem`, `alpha_lemma` belong to an optional secondary practical experiment.
+5. Use RRF as a **secondary robustness baseline**, with its parameter and candidate depth specified; it is not parameter-free.
+6. Build deeper multi-system pooling/qrels than a top-10 pool for reliable unique-hit, Recall and oracle-union analysis; document assessors, agreement and adjudication. Candidate-set complementarity is separate from fusion ranking, and per-query best-alpha oracle is not oracle union.
+
 ## Reliability cautions
 
 - **Sharifbaev 2026 manuscript:** D until official final/defense evidence is verified.
@@ -149,9 +171,9 @@ Next priorities:
 2. Operationalize the provisional falsifiable hypotheses and null conditions.
 3. Design Uzbek retrieval benchmark / qrels protocol.
 4. Select and justify BM25 preprocessing variants.
-5. Select at least one modern retrieval-trained multilingual dense baseline and keep it fixed for the main interaction analysis.
-6. Define fusion baselines (RRF and/or normalized score fusion) as controls, not novelty.
+5. Pilot/dev-validate candidate semantic dense retrievers for Uzbek, select primary `D` by a predefined rule and freeze it for the main interaction analysis.
+6. Specify primary normalized convex fusion with one global alpha, normalization and candidate depth across morphology conditions; use RRF as a secondary robustness control.
 7. Run pilot experiments to test whether morphology actually changes lexical–semantic complementarity.
 8. If the interaction is weak/unstable, revise the gap before inventing a new method.
 
-High-priority background/deep-dive work remains useful where it directly affects design (CLEAR, DHR, BGE-M3, Bruch fusion analysis, Query-Adaptive Hybrid Search, modern dense/learned-sparse baselines), but broad literature accumulation is no longer the immediate bottleneck.
+The seven targeted international deep dives are complete. UZ-SEM-007 and targeted verification questions remain tracked in the index/open questions, but the immediate bottleneck is **benchmark/qrels + Uzbek pilot**, not broad literature search.
