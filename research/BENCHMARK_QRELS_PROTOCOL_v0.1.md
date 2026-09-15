@@ -1,13 +1,13 @@
 # BENCHMARK_QRELS_PROTOCOL_v0.1
 
-**Project:** PhD — Uzbek Hybrid Information Retrieval  
-**Topic:** «Гибридный подход к поиску информации на узбекском языке на основе интеграции лексических и семантических методов»  
-**Protocol version:** v0.1  
-**Date:** 2026-09-15  
-**Status:** WORKING / PROVISIONAL — protocol design before benchmark construction and controlled pilot  
-**Research gap:** `v0.8 refined` — unchanged / provisional  
-**RQ/H basis:** `research/OPEN_QUESTIONS.md`, working RQ/H v0.2  
-**Decision basis:** `decisions/DECISIONS.md`, especially D-017–D-022  
+**Project:** PhD — Uzbek Hybrid Information Retrieval\
+**Topic:** «Гибридный подход к поиску информации на узбекском языке на основе интеграции лексических и семантических методов»\
+**Protocol version:** v0.1\
+**Date:** 2026-09-15\
+**Status:** WORKING / PROVISIONAL — protocol design before benchmark construction and controlled pilot\
+**Research gap:** `v0.8 refined` — unchanged / provisional\
+**RQ/H basis:** `research/OPEN_QUESTIONS.md`, working RQ/H v0.2\
+**Decision basis:** `decisions/DECISIONS.md`, especially D-017–D-022\
 
 ---
 
@@ -15,10 +15,10 @@
 
 This document defines the benchmark, relevance-judgment (`qrels`) and evaluation protocol required to test the current working research chain:
 
-`morphological representation change`  
-→ `lexical relevant-set change`  
-→ `change in complementarity vs the SAME fixed dense retriever D`  
-→ `change in incremental hybrid gain`  
+`morphological representation change`\
+→ `lexical relevant-set change`\
+→ `change in complementarity vs the SAME fixed dense retriever D`\
+→ `change in incremental hybrid gain`\
 → `relation to interpretable Uzbek query characteristics`.
 
 The protocol is designed to make the current research gap **falsifiable**. It must permit all of the following outcomes:
@@ -66,8 +66,8 @@ These outcomes must not be conflated. Similar aggregate nDCG/MAP/Recall does not
 
 The benchmark must support the following controlled design:
 
-`L_raw = BM25_raw`  
-`L_stem = BM25_stem`  
+`L_raw = BM25_raw`\
+`L_stem = BM25_stem`\
 `L_lemma = BM25_lemma`
 
 with one fixed semantic dense retriever:
@@ -76,8 +76,8 @@ with one fixed semantic dense retriever:
 
 and three corresponding hybrid conditions:
 
-`H_raw = fusion(L_raw, D)`  
-`H_stem = fusion(L_stem, D)`  
+`H_raw = fusion(L_raw, D)`\
+`H_stem = fusion(L_stem, D)`\
 `H_lemma = fusion(L_lemma, D)`.
 
 The following must remain fixed across `raw/stem/lemma`:
@@ -2065,9 +2065,9 @@ Changes selected from test outcomes remain prohibited for the original confirmat
 
 Recommended progression:
 
-`v0.1` — benchmark/qrels design  
-`v0.2` — concrete resources/checkpoints/corpus frozen  
-`v0.3` — annotation/pooling feasibility corrections, if required  
+`v0.1` — benchmark/qrels design\
+`v0.2` — concrete resources/checkpoints/corpus frozen\
+`v0.3` — annotation/pooling feasibility corrections, if required\
 `EXPERIMENT_LOCK` — final pre-test immutable configuration
 
 After test qrels are opened, any unplanned analysis must be labelled **exploratory**.
