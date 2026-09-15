@@ -154,6 +154,8 @@ The following are protocol decisions unless a later protocol version explicitly 
 | Primary fusion candidate depth | `k_cand = 100` per component |
 | Initial pooling depth | Target `p = 50` per contributor; DEV-1 must cover every tuning candidate's top 10 |
 | Pool extension | to satisfy judged-coverage gates through top 100 |
+| Confirmatory H1/H2a coverage | 100% adjudicated top-50 union of `L_raw`, `L_stem`, `L_lemma` and `D`; one common eligible query set |
+| Inferential Recall coverage | complete compared top-100 returned-list union, or a pre-specified uncertainty/bounds procedure (Section 13.4) |
 | Dense comparator | one retrieval-trained semantic dense retriever selected on dev, then frozen |
 | Primary fusion | normalized convex score combination |
 | Primary alpha | one global interior alpha from `{0.05, 0.10, ..., 0.95}` for all three morphology conditions |
@@ -363,7 +365,9 @@ Before final query-count freeze, complete and archive a **prospective power / se
 
 Use a reproducible analytical calculation or simulation appropriate to each planned test/interval and outcome distribution. Predeclare the desired power (planning target: at least 80%), precision and equivalence sensitivity, and evaluate a range of plausible variances, paired correlations, bounded/zero-heavy set outcomes, feature prevalence and annotation reliability. Nuisance estimates may come from independent evidence or dev calibration, with uncertainty/sensitivity ranges; do not substitute favorable observed dev morphology effects for independently justified target effects or SESOI (Section 20).
 
-Account for Holm correction in the primary contrast families, the full RQ3 Benjamini–Hochberg FDR family, dependence between features/contrasts, and loss of usable paired topics through coverage/zero-relevance exclusions. Multiple contrasts from one query do not increase the independent query N. Report assumed effects, nuisance inputs, correction procedure, usable N, detectable effects/interval precision and the resulting decision for each hypothesis.
+Account for Holm correction in the primary contrast families, including **the three H1 `LexSetChange@50` threshold tests and, separately, the three H2a `ComplementaritySetShift@50` threshold tests** fixed in Section 21.2. Assess sensitivity under the corrected decision rules, including the probability of detecting at least one meaningful contrast and the ability to establish negligibility across all three contrasts using multiplicity-compatible inference; unadjusted single-contrast power is insufficient for these family-level claims.
+
+Also account for the full RQ3 Benjamini–Hochberg FDR family, dependence between features/contrasts, and loss of usable paired topics through coverage/zero-relevance exclusions. In particular, plan for the **100% adjudicated top-50 four-component-union gate** for H1/H2a and the stricter inferential Recall coverage or pre-specified bounds procedure in Section 13.4. Multiple contrasts from one query do not increase the independent query N. Report assumed effects, nuisance inputs, correction procedure, usable N, detectable effects/interval precision and the resulting decision for each hypothesis.
 
 In particular, **120 test queries may be underpowered for `|rho| = 0.20`, especially after multiple-testing/FDR correction**. The final test N must be justified prospectively. If available N lacks adequate sensitivity for confirmatory H3, label H3 **exploratory before test-label exposure**; a non-significant association must not become evidence of no association. Apply the same sensitivity review to the other confirmatory claims.
 
@@ -1045,19 +1049,37 @@ After initial judgments, compute judged coverage for each **query and primary co
 
 For a run returning `n_k = min(k, number of available returned candidates)` unique IDs, define `judged@k` as the number of those IDs with a final adjudicated `0/1/2` label divided by `n_k`. Report list length/shortfalls separately; if `n_k=0`, coverage is `NA` and requires audit, not an automatic pass. `U`/unjudgeable and absent/unresolved labels remain in the returned-list denominator but **do not count in the judged numerator**. Report `U` separately from never-assessed items; neither may be removed from the denominator to inflate coverage.
 
-Required minimum judged coverage:
+Generic minimum judged coverage for descriptive/general evaluation:
 
 - top 10: **100%**;
 - top 50: **≥98%**;
 - top 100: **≥95%**.
 
-If any core run fails a gate, add the unjudged documents needed from its top 100 to a residual pool and judge them.
+If any core run fails a required gate, add the unjudged documents needed from its returned top-k lists to a residual pool and judge them. The stricter confirmatory gates below take precedence over these generic minima.
 
 Repeat until the gates are satisfied or a documented resource stop is triggered.
 
-If the top-50 judged-coverage gate cannot be reached, confirmatory set-based analysis at `k_set=50` is not permitted for the affected query/run.
+### Confirmatory H1/H2a set-analysis gate
 
-Apply required metric eligibility to a common paired topic set across compared runs and report exclusions and effective N. Top-10 failure prohibits the affected confirmatory `nDCG@10` comparison; top-100 failure prohibits confirmatory `Recall@100` for the affected comparison. Partial top-50/top-100 coverage remains a pooled-qrels limitation even when a gate passes. Secondary runs need the same gates for any corresponding inferential claim. Dev selection uses the **stricter metric-specific gates in DEV-1–DEV-4**; these test minima never authorize tuning on unjudged documents.
+For every query included in primary confirmatory H1/H2a inference at `k_set=50`, require **100% adjudicated `0/1/2` coverage** of:
+
+`C_50(q) = Top50(L_raw,q) ∪ Top50(L_stem,q) ∪ Top50(L_lemma,q) ∪ Top50(D,q)`.
+
+Every returned retrieval-unit ID in this union must have a final adjudicated relevance grade. `U`, never-assessed documents and unresolved judgments **do not satisfy this gate**. Even one unknown can change unique relevant hits, intersection, overlap, `LexSetChange`, `ComplementaritySetShift` or oracle union. The generic **≥98% top-50 gate is for secondary/descriptive use only and does not authorize confirmatory H1/H2a set-identity analysis**.
+
+If full union coverage cannot be obtained, exclude the query from the primary confirmatory H1/H2a set-identity analysis. Use **one common eligible query set for both H1/H2a and all three paired morphology contrasts**, also applying Section 14.8's known-relevance eligibility rule. Do not delete different topics for different contrasts, treat unknowns as non-relevant, or interpret incomplete known-hit sets as evidence of unique-hit differences.
+
+Retain excluded topics in the audit and in clearly labelled descriptive analyses where mathematically valid, reporting missing IDs/grades, coverage, exclusion reasons and effective N. A separately pre-specified lower/upper-bound sensitivity analysis may show how unknown grades could change the set quantities, but **does not replace the primary fully judged analysis** or make these queries eligible for it.
+
+### Inferential / confirmatory Recall@100 gate
+
+For an inferential/confirmatory `Recall@100` comparison, require **complete adjudication of the union of the top-100 returned lists of all compared primary runs**, on a common eligible query set, or a **formally pre-specified uncertainty/bounds procedure that accounts for unknown relevance grades**. This also applies to inferential Recall-based gains. `U` and never-assessed items are unknowns; **≥95% judged coverage alone supports descriptive pooled-qrels Recall with explicit coverage reporting, not fully observed confirmatory Recall**.
+
+Any uncertainty/bounds alternative must be fixed in the pre-test revision / `EXPERIMENT_LOCK`, specifying the judgment universe, treatment of unknown grades, their joint effects on relevant-hit counts and the pooled-qrels denominator, shared IDs across runs, paired comparisons and the inferential decision rule. It must propagate the unknowns rather than replace them with grade 0. Without full returned-list coverage or this pre-specified procedure, the affected Recall comparison is descriptive only.
+
+These are **returned top-k candidate-coverage requirements, not a requirement for exhaustive corpus qrels**. Even with complete returned-list adjudication, Recall and oracle-union recall remain relative to the known pooled qrels.
+
+Apply the relevant eligibility gate to a common paired topic set and report exclusions/effective N. Top-10 failure prohibits the affected confirmatory `nDCG@10` comparison. Secondary/descriptive labels cannot be used to bypass a gate while making inferential claims. Dev selection continues to use the **metric-specific gates in DEV-1–DEV-4**, including 100% top-100 adjudication for any Recall tie-break; the inferential bounds alternative does not relax the prohibition on tuning with unjudged documents.
 
 ---
 
@@ -1291,6 +1313,8 @@ using binary relevance `grade >= 1`.
 
 Because qrels are pooled and not exhaustive, this is pooled-qrels Recall and must be interpreted together with judgment-coverage statistics.
 
+Inferential/confirmatory `Recall@100` comparisons require the complete compared top-100 returned-list union or the formally pre-specified uncertainty/bounds procedure in Section 13.4. The generic ≥95% judged gate permits descriptive pooled-qrels reporting only; it cannot silently stand in for fully observed confirmatory Recall. No exhaustive corpus judgments are required.
+
 For `|Rel(q)|=0`, report `NA` and apply Section 14.8; never silently score Recall as 0.
 
 ---
@@ -1332,6 +1356,8 @@ Define:
 `J_m(q) = Top_m(q) ∩ Rel(q)`
 
 `J_D(q) = Top_D(q) ∩ Rel(q)`.
+
+For confirmatory H1/H2a, these sets must be constructed only on the common eligible queries with **100% adjudicated coverage of `C_50(q)`**, the four-component top-50 union in Section 13.4. Partial known-hit sets may be audited descriptively, but unknown/U items cannot be interpreted as non-relevant or generate apparent confirmatory unique-hit differences.
 
 ---
 
@@ -1379,6 +1405,8 @@ Required contrasts:
 ---
 
 # 18. RQ2 — lexical–dense complementarity measurements
+
+Confirmatory use of the following set-identity quantities requires the same complete top-50 component-union gate and common eligible query set as H1 (Section 13.4).
 
 For morphology condition `m`:
 
@@ -1599,6 +1627,23 @@ For signed effectiveness outcomes such as `nDCG@10`, `Recall@100`, `ΔG_lex`:
 
 Correct the three morphology pairwise comparisons using **Holm correction** within each primary outcome family.
 
+### H1 and H2a set-change threshold-test families
+
+The following are **two separate confirmatory multiplicity families**, fixed in v0.1:
+
+| Family | Primary outcome | Three required contrasts | Family-wise control |
+|---|---|---|---|
+| H1 | `LexSetChange@50` | raw vs stem; raw vs lemma; stem vs lemma | Holm across these three H1 threshold tests, family-wise error rate 0.05 |
+| H2a | `ComplementaritySetShift@50` | raw vs stem; raw vs lemma; stem vs lemma | separately, Holm across these three H2a threshold tests, family-wise error rate 0.05 |
+
+For family `F` and contrast `ab`, the primary estimand is the mean query-level set change `mu_F,ab` on the common fully judged eligible query set (Section 13.4). Let `tau_F` be the final independently justified practical-effect threshold for that outcome, frozen under Section 20. Test **`H0: mu_F,ab <= tau_F` against `H_A: mu_F,ab > tau_F`** for each contrast. This is a one-sided threshold/effect test of a nonnegative set-change quantity, not a signed effectiveness-difference test.
+
+Use a pre-specified valid threshold-test implementation, including a suitably calibrated query-level bootstrap/permutation procedure if justified for this estimand and null. The exact statistic, null calibration, resampling scheme, number of resamples, handling of bounded/zero-heavy outcomes and uncertainty-interval construction must be finalized and validated in the pre-test revision / `EXPERIMENT_LOCK`. Preserve within-query dependence across contrasts when jointly resampling. Simple swapping of morphology labels is not by itself a valid threshold test for these symmetric set-change quantities.
+
+Compute all three raw p-values, apply **Holm correction to the H1 family**, and **separately apply Holm correction to the H2a family**. Report all contrasts' effect estimates, raw/adjusted p-values and **multiplicity-compatible uncertainty intervals**, using a pre-specified adjusted/simultaneous construction with 95% family coverage. Ordinary unadjusted bootstrap 95% CIs, if also shown, must be labelled **descriptive** and cannot determine confirmatory support.
+
+Do not inspect three ordinary unadjusted 95% CIs, select the one crossing SESOI and claim H1/H2a support. The family membership, one-sided threshold-testing principle and separate Holm corrections are fixed here; their implementation cannot be chosen after test-label exposure. An unavailable contrast must not silently reduce the family to fewer than three planned tests.
+
 ---
 
 ## 21.3 Equivalence / practically negligible effect
@@ -1614,6 +1659,8 @@ Evidence for negligible effect requires the uncertainty interval to support the 
 
 Use only independently justified margins locked under Section 20, with the declared multiplicity treatment for the corresponding claim family. The planning candidates are not automatic equivalence limits. Sensitivity to establish equivalence must also be assessed prospectively; a wide interval is insufficient evidence.
 
+For H1 and H2a, practical-negligibility/equivalence inference must also cover all three contrasts with **separate family-wise control for each family**. Pre-specify valid contrast-level equivalence tests using the frozen margins (for nonnegative set-change means, an upper negligibility-bound test), apply Holm separately within each three-contrast family, and require all three adjusted tests to support an all-contrasts negligibility claim. Alternatively, pre-specified simultaneous intervals for the whole family must lie within the corresponding frozen negligible regions. Ordinary unadjusted intervals and non-significant meaningful-effect tests do not establish equivalence.
+
 ---
 
 ## 21.4 H1 decision logic
@@ -1622,14 +1669,17 @@ Primary composition outcome:
 
 `LexSetChange@50`.
 
+Use only the common eligible queries satisfying **100% adjudicated top-50 coverage of `L_raw ∪ L_stem ∪ L_lemma ∪ D`** and the known-relevance rule (Sections 13.4 and 14.8).
+
 For each morphology pair, report:
 
 - mean/median set change;
-- bootstrap 95% CI;
+- multiplicity-compatible uncertainty interval for the primary mean, plus any ordinary bootstrap 95% CI clearly labelled descriptive;
+- raw and Holm-adjusted one-sided threshold-test p-values within the H1 three-contrast family;
 - raw unique-hit counts;
-- percentage of queries with non-zero change.
+- percentage of queries with non-zero change and common eligible N.
 
-H1 receives meaningful support only if at least one pre-specified contrast exceeds the frozen practical threshold with uncertainty inconsistent with the negligible range.
+H1 receives meaningful support only if at least one of the three pre-specified mean `LexSetChange@50` contrasts exceeds its frozen practical threshold and rejects the threshold null **after Holm correction across all three H1 contrasts** at family-wise error rate 0.05 (Section 21.2). A favorable unadjusted CI or p-value is insufficient. Evidence of negligibility across all contrasts must instead satisfy Section 21.3's multiplicity-compatible equivalence rule.
 
 If the effect is small or uncertainty spans both negligible and meaningful regions:
 
@@ -1643,6 +1693,8 @@ Primary:
 
 `ComplementaritySetShift@50`.
 
+Use the same common fully adjudicated top-50 four-component-union query set as H1 (Sections 13.4 and 14.8). For raw vs stem, raw vs lemma and stem vs lemma, report mean/median shifts, multiplicity-compatible intervals for the primary means, raw and Holm-adjusted threshold-test p-values, relevant-hit counts and common eligible N. Ordinary bootstrap 95% CIs are descriptive unless adjusted/simultaneous.
+
 Supporting outcomes:
 
 - `LexOnly`;
@@ -1653,9 +1705,9 @@ Supporting outcomes:
 
 H2a is not established merely because BM25 effectiveness changed.
 
-Evidence must show a practically meaningful, reproducible change in the lexical contribution relative to the same fixed `D`.
+H2a receives meaningful support only if at least one pre-specified mean `ComplementaritySetShift@50` contrast exceeds its frozen practical threshold and rejects the one-sided threshold null **after a separate Holm correction across all three H2a contrasts** at family-wise error rate 0.05. Evidence must show a practically meaningful, reproducible change relative to the same fixed `D`; unadjusted intervals or selection of a favorable supporting diagnostic cannot replace the corrected primary-family test.
 
-Convincing evidence that all key H2a changes fall inside the pre-frozen negligible range weakens the central basis of `v0.8 refined` and triggers research-gap review.
+Convincing evidence that all key H2a changes fall inside the pre-frozen negligible range requires Section 21.3's multiplicity-compatible equivalence inference across the three primary contrasts, with separately pre-specified inference for any supporting claims. Such evidence weakens the central basis of `v0.8 refined` and triggers research-gap review. Non-significance of the corrected threshold tests alone is insufficient evidence, not practical equivalence.
 
 ---
 
@@ -1757,7 +1809,7 @@ For every evaluated run report:
 - returned-list lengths, metric eligibility and effective query N;
 - `NO_KNOWN_RELEVANT` number/proportion and audit reference.
 
-Use the Section 13.4 coverage denominator: `U` remains an unknown returned item and never inflates judged coverage. Set-based conclusions at `k=50` require the coverage gate in Section 13 and the common topic-eligibility rule in Section 14.8.
+Use the Section 13.4 coverage denominator: `U` remains an unknown returned item and never inflates judged coverage. Confirmatory H1/H2a set-identity conclusions require **100% adjudicated top-50 four-component-union coverage** and the common topic-eligibility rule in Section 14.8; report that union's coverage and eligibility flag per query. The generic ≥98% top-50 gate does not suffice. For inferential `Recall@100`, report complete compared top-100 union coverage or identify the locked uncertainty/bounds procedure; ≥95% alone is descriptive only.
 
 ---
 
@@ -1766,7 +1818,8 @@ Use the Section 13.4 coverage denominator: `U` remains an unknown returned item 
 If incomplete judgments remain non-trivial:
 
 - report `bpref`;
-- repeat key set analyses on the subset of queries/runs satisfying strict judged-coverage thresholds;
+- perform primary confirmatory H1/H2a analyses only on the common fully judged query subset required by Section 13.4, retaining exclusions in the audit;
+- report any separately pre-specified lower/upper-bound set sensitivity analysis as supplementary; it cannot replace the fully judged primary analysis;
 - perform a leave-one-pool-contributor sensitivity analysis if feasible.
 
 Do not make a strong oracle-union claim from a shallow pool.
@@ -1795,11 +1848,13 @@ After dev phases are complete, freeze and version `EXPERIMENT_LOCK` **before gen
 - RRF parameter;
 - primary metrics;
 - primary statistical tests;
+- H1 and H2a three-contrast threshold-test families, separate Holm corrections, exact test/resampling implementation and multiplicity-compatible intervals/equivalence procedures;
 - RQ3 feature list;
 - SESOI/equivalence thresholds;
 - scientific/practical rationale for final margins independent of comparative dev morphology effects;
 - dev candidate inventory, phase-specific coverage reports and qrels/selection hashes;
 - test pool contributors/depths, residual extension rules and metric eligibility gates;
+- complete top-50 four-component-union eligibility for H1/H2a and complete compared top-100 coverage or any pre-specified inferential Recall uncertainty/bounds procedure;
 - `U` treatment, `NO_KNOWN_RELEVANT` trigger and any predefined replacement policy;
 - assessor rubric, adjudication procedure and test-label access controls;
 - software/container environment;
@@ -1959,7 +2014,10 @@ Pre-lock gates must pass before generating the main held-out runs; test-qrels ga
 - disagreement adjudication complete;
 - agreement reported;
 - DEV-1–DEV-4 metric-specific coverage gates satisfied before each dev selection;
-- post-lock test top-10/top-50/top-100 gates satisfied for the corresponding primary claims;
+- post-lock test top-10 coverage 100% for confirmatory `nDCG@10`;
+- primary confirmatory H1/H2a use **one common eligible query set with 100% adjudicated `0/1/2` coverage of the top-50 union of `L_raw`, `L_stem`, `L_lemma` and `D`**; unknown/U items fail this gate and cannot create apparent set-identity differences;
+- inferential/confirmatory `Recall@100` uses complete adjudication of the compared primary runs' top-100 returned-list union or a formally pre-specified uncertainty/bounds procedure accounting for unknowns;
+- generic ≥98% top-50 and ≥95% top-100 coverage permit secondary/descriptive reporting only for these set/Recall quantities, not the corresponding fully observed confirmatory claims; exhaustive corpus qrels are not required;
 - `U` excluded from judged numerators and retained in coverage denominators;
 - `NO_KNOWN_RELEVANT` audit complete, undefined metrics excluded consistently, and the pre-frozen zero-relevant-topic trigger reviewed (provisional pause trigger: >5%).
 
@@ -1992,7 +2050,10 @@ All final primary settings, features, tests and independently justified threshol
 ## Gate G — statistical sensitivity / power
 
 - prospective analysis completed before final query-count freeze for paired `nDCG@10`, H1 set change, H2a complementarity-set shift, H2b `ΔG_lex` and RQ3 associations;
+- H1 sensitivity accounts for Holm across its three `LexSetChange@50` threshold tests, and H2a sensitivity separately accounts for Holm across its three `ComplementaritySetShift@50` threshold tests; exact tests, multiplicity-compatible intervals and equivalence procedures are pre-specified and locked;
+- power/precision evaluated under the corrected at-least-one-contrast support rule and the all-contrasts negligibility rule, with dependence preserved; unadjusted single-contrast calculations do not justify family-level claims;
 - final N, target power/precision, independently justified effects/margins, multiplicity and plausible eligibility losses documented;
+- eligible-N planning reflects complete top-50 four-component-union coverage for H1/H2a and complete returned top-100 coverage or the locked uncertainty/bounds procedure for inferential Recall;
 - each retained confirmatory claim has adequate sensitivity under its planned decision procedure; budget alone is insufficient;
 - H3 explicitly exploratory if available N cannot adequately assess the practical association, including `|rho| = 0.20` as the current planning candidate under FDR;
 - actual metric-specific eligible N checked after locked annotation; unexpected losses require sensitivity/scope review, without choosing new favorable margins or treating non-significance as no effect.
