@@ -149,3 +149,28 @@ Rationale:
 - [CURRENT_GAP](../research/CURRENT_GAP.md) задаёт проверяемую связь смены морфологического представления с изменением взаимодополняемости и условие пересмотра gap; [OPEN_QUESTIONS](../research/OPEN_QUESTIONS.md) фиксирует рабочие RQ/H v0.2, нулевые гипотезы и логику измерений.
 - [Query-Adaptive Hybrid Search boundary](../literature/deep-dives/2026_Posokhov_Query_Adaptive_Hybrid_Search.md) показывает, что Query-Driven Alpha Prediction и динамические веса компонентов уже представлены в литературе; RQ3 сохраняет узкий предмет morphology-induced изменения взаимодополняемости.
 - [Bruch, Gai & Ingber](../literature/deep-dives/2023_Bruch_Gai_Ingber_Fusion_Functions_Hybrid_Retrieval.md) обосновывают разделение доступных релевантных документов в объединении кандидатов и качества их ранжирования после fusion. Это требует раздельной диагностики H2a/H2b; `per-query best-alpha oracle != oracle union`.
+
+## D-023 — 2026-09-20 — ACTIVE
+
+**Primary title/abstract screening for the systematic review is complete.**
+
+Identification: **2224** raw records; **214** duplicates removed; **2010** screened. Final primary labels: **256 INCLUDE / 1111 EXCLUDE / 643 UNCERTAIN**.
+
+Primary screening is **AI-assisted** and must not be described as dual-human screening or two independent human reviewers. Same-workflow calibration and corrections do not constitute independent second review. Actual second review and full-text assessment have not started.
+
+Rationale: preserve the completed workflow milestone and its provenance without treating preliminary eligibility decisions as evidence synthesis or changing CURRENT_GAP **v0.8 refined — provisional**.
+
+See [Systematic Review State](../research/SYSTEMATIC_REVIEW_STATE.md).
+
+## D-024 — 2026-09-20 — ACTIVE
+
+**Second-review design uses two analytically distinct cohorts.**
+
+1. Frozen random sample: **402**, for agreement/stability analysis.
+2. All primary UNCERTAIN: **643**, for targeted uncertainty resolution.
+
+The second-review population is the **UNION** of those cohorts, with overlap to be calculated before review; the actual overlap is **NOT YET COMPUTED at this checkpoint**. Preserve the frozen random sample and cohort membership for analysis.
+
+**Do not compute one headline agreement statistic on the enriched union.**
+
+Rationale: the two cohorts have different sampling purposes. Enrichment with uncertain cases changes the composition of the review population; targeted uncertainty resolution and random-sample agreement/stability must be analyzed separately.

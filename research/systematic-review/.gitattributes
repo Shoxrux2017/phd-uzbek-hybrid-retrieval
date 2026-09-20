@@ -1,0 +1,4 @@
+# Preserve audited source bytes so published copies retain their SHA-256 hashes.
+# Treat preserved CRLF as line endings while retaining whitespace checks.
+/methods/* -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/reproducibility/* -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

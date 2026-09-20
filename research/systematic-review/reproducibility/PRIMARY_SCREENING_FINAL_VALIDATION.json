@@ -1,0 +1,21 @@
+{
+  "validation": "PASS",
+  "regression_tests_run": 18,
+  "regression_tests_passed": 18,
+  "second_run": "BYTE-IDENTICAL",
+  "compared_output_files": 5,
+  "original_files_checked": 141,
+  "original_files_changed": 0,
+  "output_sha256": {
+    "TITLE_ABSTRACT_SCREENING_PRIMARY_FINAL.csv": "d548acd0644a9e4bf10c79749fe1adac563335e093de1f338a41b977e3d8a5ba",
+    "TITLE_ABSTRACT_SCREENING_PRIMARY_FINAL.parquet": "f856797698e18a7330a77efe67344613c8312695d51f4beceeab41d71cb40b5d",
+    "PRIMARY_SCREENING_FINAL_COUNTS.json": "672688326189ba7faaee02a0d13a655d6de96cacddde9a6526d29b468f6db7b1",
+    "PRIMARY_SCREENING_FINAL_MANIFEST.md": "5de19dc351fcba805099b200c27e4c452d6b39454a221a41ef9910a5e456b89e",
+    "PRIMARY_SCREENING_FINAL_SHA256.txt": "36d5d0ee47122de2d700e143536305693b643b6c35aa9faae6f7637a779b92df"
+  },
+  "independent_second_review_performed": false,
+  "web_used": false,
+  "full_text_retrieval_performed": false,
+  "github_modified": false,
+  "final_status": "PRIMARY TITLE/ABSTRACT SCREENING COMPLETE"
+}

@@ -3,6 +3,14 @@
 **Purpose:** сквозная карта того, что уже изучено и как отдельные линии связаны с текущей PhD.
 **Evidence cut-off:** 2026-09-15.
 
+## Systematic review workflow checkpoint — 2026-09-20
+
+Identification/search pipeline and deduplication are complete: **2224** raw records, **214** duplicates removed, **2010** records entering title/abstract screening. AI-assisted primary screening is complete: **256 INCLUDE / 1111 EXCLUDE / 643 UNCERTAIN**. This is not independent dual-human screening.
+
+Evidence synthesis is not yet complete; full-text assessment and actual second review have not started. The frozen random second-review sample contains **402** records. These are workflow counts, not scientific evidence about the gap. There is **no gap revision**: **v0.8 refined remains provisional**, and the scientific evidence cut-off above is unchanged.
+
+See [SYSTEMATIC_REVIEW_STATE.md](SYSTEMATIC_REVIEW_STATE.md).
+
 ---
 
 # 1. Structural PhD references

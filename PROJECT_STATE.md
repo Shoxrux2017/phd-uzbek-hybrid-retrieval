@@ -1,6 +1,6 @@
 # Current PhD State
 
-**Last updated:** 2026-09-15
+**Last updated:** 2026-09-20
 **Status:** working research state; not final dissertation state.
 
 ## Topic
@@ -51,6 +51,22 @@
 > Недостаточно установлено, как изменение морфологического представления лексического канала для Uzbek — исходные словоформы, стемы, леммы — изменяет структуру его взаимодополняемости с фиксированной моделью плотного поиска: уникально найденные релевантные документы, перекрытие результатов и дополнительный эффект гибридного поиска, включая зависимость этих изменений от характеристик узбекских запросов.
 
 Это **не окончательная новизна** и не утверждение, что adaptive fusion обязательно является решением.
+
+## Systematic review article — current state
+
+The article “Morphological Representation in Information Retrieval for Morphologically Rich Languages: A Systematic Review of Lexical, Dense, and Hybrid Retrieval with an Uzbek Perspective” primarily targets **ACM TALLIP**.
+
+- Systematic search/identification and deduplication: **complete**.
+- Raw records: **2224**; duplicates removed: **214**; entered title/abstract screening: **2010**.
+- Primary title/abstract screening: **complete**; **256 INCLUDE / 1111 EXCLUDE / 643 UNCERTAIN**.
+- Primary screening was **AI-assisted**, not independent dual-human screening.
+- Frozen random second-review sample: **402**.
+- Actual second review: **NOT STARTED** at this checkpoint.
+- Full-text retrieval/screening: **NOT STARTED**.
+
+Details: [Systematic Review State](research/SYSTEMATIC_REVIEW_STATE.md).
+
+**This workflow status does not revise CURRENT_GAP v0.8 refined. CURRENT_GAP remains provisional.** Evidence synthesis and full-text assessment are pending; the scientific evidence cut-off remains 2026-09-15.
 
 ## Evidence update — 2026-09-15
 
