@@ -1,0 +1,2 @@
+# Hashed protocol files: keep exact bytes on every checkout so SHA256SUMS stay valid
+research/systematic-review/protocol/** -text

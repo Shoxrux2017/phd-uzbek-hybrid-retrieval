@@ -1,0 +1,10 @@
+# Exact Hugging Face tokenizer profiling
+transformers>=4.45,<5
+sentencepiece>=0.2
+
+# Streaming Parquet input
+pyarrow>=16
+
+# Official Wikimedia XML cleanup
+lxml>=5
+mwparserfromhell>=0.6

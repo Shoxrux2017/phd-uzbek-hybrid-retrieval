@@ -1,0 +1,5 @@
+{
+  "status": "tokenizers_not_run",
+  "recommended_word_limit": null,
+  "reason": "Run with the exact E5 tokenizer (or local SentencePiece model) before freezing a limit."
+}

@@ -62,7 +62,11 @@
 - «RRF / fixed weighted fusion — новая идея»;
 - «dynamic `alpha(q)` / query-dependent strategy — новая идея»;
 - «query-type analysis lexical vs semantic — новая идея»;
-- «взаимодополняемость lexical и semantic retrieval сама по себе ранее не исследовалась».
+- «взаимодополняемость lexical и semantic retrieval сама по себе ранее не исследовалась»;
+- «выбор или взвешивание морфологического варианта лексического канала отдельно для каждого запроса (query-dependent stemming/normalization) — новая идея» (занято: Paik et al., 2013, ACM TOIS — MORPH-034);
+- «комбинация двух морфологических представлений лексического канала (например, morphs + lemmas или raw + stem) — новая идея» (занято: Turunen, 2012 — MORPH-025; Fidan, 2012 — MORPH-024).
+
+*Список дополнен 2026-09-28 по итогам deep-dive пакета из 41 работы ([сводка](../literature/DEEP_DIVES_BATCH_2026-09-28_SUMMARY.md)); формулировка v0.8 refined не менялась.*
 
 ## Evidence boundary
 

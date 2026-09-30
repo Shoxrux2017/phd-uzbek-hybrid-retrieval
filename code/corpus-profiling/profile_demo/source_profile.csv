@@ -1,0 +1,4 @@
+﻿source,source_records_seen,sampled_documents,sample_exact_duplicate_docs,sample_exact_duplicate_pct,mixed_script_documents,mixed_script_pct,mean_latin_share,mean_cyrillic_share,words_n,words_mean,words_p50,words_p75,words_p90,words_p95,words_p99,words_max,chars_n,chars_mean,chars_p50,chars_p75,chars_p90,chars_p95,chars_p99,chars_max
+wikipedia,2,2,0,0.0,0,0.0,1.0,0.0,2,371.0,371.0,547.0,652.6,687.8,715.96,723,2,3031.0,3031.0,4467.5,5329.400000000001,5616.7,5846.54,5904
+news,2,2,0,0.0,0,0.0,1.0,0.0,2,152.0,152.0,215.5,253.6,266.29999999999995,276.46000000000004,279,2,1232.5,1232.5,1743.75,2050.5,2152.75,2234.55,2255
+legal,2,2,0,0.0,0,0.0,1.0,0.0,2,416.5,416.5,612.25,729.7,768.8499999999999,800.17,808,2,3872.0,3872.0,5695.5,6789.6,7154.299999999999,7446.0599999999995,7519

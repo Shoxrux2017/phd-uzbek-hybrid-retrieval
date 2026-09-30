@@ -1,6 +1,6 @@
 # Current PhD State
 
-**Last updated:** 2026-09-20
+**Last updated:** 2026-09-28
 **Status:** working research state; not final dissertation state.
 
 ## Topic
@@ -111,6 +111,17 @@ Closest morphology/low-resource boundary evidence:
 - **GreekBarRetrieval, 2026 preprint:** three BM25 morphology/preprocessing variants + nine modern dense retrievers + fusion + query reformulation in one statutory-retrieval benchmark.
 
 Full synthesis: `research/GAP_BOUNDARY_2026-09-10.md`.
+
+## Evidence update — 2026-09-28
+
+- Read 41 works in full as deep dives (MORPH-005 … MORPH-043, HYB-013, full-text upgrade of UZ-IR-001), each checked by an independent AI verifier. None closes the v0.8 core.
+- Systematic review Tier 2 extraction: 121 included studies. None reports lexical ↔ dense complementarity decomposition.
+- `v0.8 refined` is **unchanged**. Two items were added to the non-claims list: query-dependent choice of morphological variant, and combining two lexical morphological representations (see `research/GAP_HISTORY.md`).
+- Design implications adopted as proposals:
+  - fix and report the full BM25 configuration and the lemma-disambiguation rule;
+  - build qrels pools from all channels, including D;
+  - tune only on dev;
+  - add prefix-n truncation as a control.
 
 ## Current scientific position
 

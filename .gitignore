@@ -1,2 +1,12 @@
 # Local systematic-review record-level data
 /artifacts/systematic-review-v1.0/
+
+# Local-only or private material (backed up in the private data repository, see README)
+/artifacts/
+/articles/
+# Local environments and scratch folders
+/.venv/
+/.screening_*/
+__pycache__/
+~$*
+*.tmp
