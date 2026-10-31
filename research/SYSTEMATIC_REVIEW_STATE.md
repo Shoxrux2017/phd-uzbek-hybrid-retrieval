@@ -112,3 +112,87 @@ See [PRIMARY_SCREENING_CHECKPOINT_2026-09-20.md](systematic-review/PRIMARY_SCREE
 - Two related 2018 papers by El Mahdaouy et al. were sent by the author but were not identified by the database search; stored in `acquisition_round3/other_sources_not_in_search/`, not screened. Decision pending on "identification via other methods".
 - Synthesis plan **frozen** 2026-09-29 (`08_publication/SYNTHESIS_PLAN_v1.0.md`, SHA-256 in `SYNTHESIS_PLAN_FREEZE_SHA256.txt`); written after extraction, before synthesis.
 - Provenance: all stages AI-assisted; human verification sample issued 2026-09-28 (`09_human_verification/`), not yet returned.
+
+## Update 2026-10-03 — dual full-text review, national search, new counts
+Recorded with AI assistance (Claude).
+- **Human verification of title/abstract screening.** The first author blind re-screened 150 records. Result: 0/75 false exclusions (95% CI 0–4.9%); all 38 disagreements were AI over-inclusions, and none reached the included set. See `09_human_verification/results_TA_2026-09-30`.
+- **Full text (290).** Second reviewer U.M. Lutfullaev (PhD; ChatGPT-assisted, per his declaration). Agreement with the AI 92.4%, κ = 0.85. The first author adjudicated the 22 disagreements. Result: 113 studies (116 reports). See `07_full_text/final_disposition`.
+- **National search (§9).** Two passes: a web subagent and a browser pass (Scholar, CyberLeninka, arXiv, OAK). 130 new records screened, 17 full texts sought; 1 study included (NR0002, Uzbek). See `10_national_search`.
+- **Current totals.** 114 studies; dense 12; hybrid 2; Turkic 11; Uzbek 2. PRISMA counts: `08_publication/PRISMA_COUNTS_2026-10-03.md`; synthesis plan Amendment 2.
+- **Pending.**
+  - citation chasing (§6.4);
+  - El Mahdaouy 2018 decision;
+  - update of the manuscript draft numbers;
+  - Tier 3 effect table (RQ1).
+
+## Update 2026-10-03 (afternoon) — El Mahdaouy 2018 papers
+Recorded with AI assistance (Claude).
+- Both papers were reviewed independently by the AI (AI_FT_01, key written first) and the first author: full agreement. Included as **one study, AC0001 (2 reports)**, under "other methods (author contact)". See `07_full_text/acquisition_round3/other_sources_not_in_search/OTHER_SOURCES_FT_FINAL_2026-10-03.csv` and synthesis-plan Amendment 3.
+- **Current totals.** 115 studies (119 reports); dense 12; hybrid 2; Turkic 11; Uzbek 2.
+- **Pending.**
+  - citation chasing (§6.4);
+  - update of the manuscript draft numbers;
+  - Tier 3 effect table (RQ1).
+- AC0001 coding of per-query analysis (robustness index, PRF vs baseline) as QUANTITATIVE with scope SYSTEM_VS_SYSTEM was confirmed by the first author (codebook rule applied literally).
+
+## Update 2026-10-03 (evening) — citation chasing (§6.4) started
+Recorded with AI assistance (Claude).
+- Seed set: 30 works (`11_citation_chasing/SEED_SET_2026-10-03.csv`), scope approved by the first author.
+- Forward and backward via OpenAlex (queried from the researcher's Chrome), plus reference lists from 19 PDFs or publisher pages.
+- Totals: 1,788 identified; 206 duplicates; 470 from before 2000; 1,112 screened by AI_CC_01. See `CITATION_CHASING_LOG_2026-10-03.md`.
+- The first author's blind check is pending: `CITATION_CHASING_REVIEW_BLIND_2026-10-03.xlsx`, 165 rows.
+- 4 closest works (Aboasal, GreekBarRetrieval, Munetsi, U-RR²) go straight to full-text assessment.
+- **Time window (option A, 2026-10-03):** the 2000–2026 window is kept, now with an explicit rationale (CLEF 2000; TREC-2001 Arabic). A pre-specified pre-2000 sensitivity check was added (AMD-R24). Of 467 pre-2000 records, the AI advanced 44. Blind file for the first author: `11_citation_chasing/PRE2000_SENSITIVITY_REVIEW_BLIND_2026-10-03.xlsx` (56 rows).
+
+## Update 2026-10-08 — citation chasing: the first author's blind check returned
+Recorded with AI assistance (Claude).
+- 164 rows were checked. The file the first author used did not include the late-added row CC0406.
+- 2 records were not found (CC0238, CP0582). Under the codebook they are treated as UNCERTAIN/TA8 and advanced.
+- Binary agreement (advance/exclude): 78.4%, κ 0.54. The κ depends on the sample design, because the sample was enriched with AI-advanced records.
+- The first author excluded 33 records that the AI had advanced. Most of these decisions were based on reading the full text.
+- In the random sample of 40 AI exclusions, the first author advanced 2:
+  - CP0566 is a genuine AI miss (2.5%; 95% CI 0.4–12.9%);
+  - CC0323 is a proceedings volume. Inside it the first author found a new candidate, Huang et al., CIKM 2013 (DSSM).
+- Title/abstract rule: a record advances to full text if either reviewer advanced it. Result: 126 advanced, 38 excluded by both.
+- Files: `11_citation_chasing/results_2026-10-08/`.
+- **2026-10-08, decisions by the first author:**
+  - **No second AI pass** over the 948 AI-excluded records that were not sampled. Report this as a limitation: the observed AI miss rate is 1/40 (2.5%; 95% CI 0.4–12.9%).
+  - **The first author did the blind check himself, without AI assistance.** Record this in the AI-use declaration.
+- **2026-10-08 (later):**
+  - CC0406 was decided by the first author in chat: EXCLUDE TA2. The title/abstract stage of citation chasing is now complete: 126 records advance, 39 are excluded by both reviewers.
+  - The first author declined author reminders for now.
+  - The second full-text reviewer for the citation-chasing records is U.M. Lutfullaev.
+
+## Update 2026-10-26 — citation chasing: AI full-text review
+Recorded with AI assistance (Claude).
+- **Full texts.** Available for 103 of the 131 records (first-author zip, plus 2 PDFs from Downloads); 28 are still missing.
+- **AI review.** AI_FT_01 reviewed all 103 under the same frozen triage instructions as the database full texts: INCLUDE 50, EXCLUDE 51 (FT2 26, FT3 15, FT6 6, FT1 2, FT4 2), UNCERTAIN 2.
+  - CC0200: the supplied file is slides, not the paper.
+  - CP0357: open question whether Turkish TDT counts as retrieval; to be decided consistently with the included CR002158.
+- **Linked to included studies:**
+  - CC0028 → CR000561;
+  - CC0177 → CR002216;
+  - CC0248 → CR000452, CR000495, CR000504 and CP0603;
+  - possible overlaps to check: CC0203 → CR000502; CC0176 → CR002198; CC0375 → CR000447; CP0500 → CR002215.
+- **Files:** decisions in `11_citation_chasing/fulltext/_KEY_do_not_open_before_finishing/AI_FT_01_CC_ALL_2026-10-26.csv`; blind workbook for reviewer 2 in `11_citation_chasing/fulltext/CITATION_CHASING_FT_REVIEW_BLIND_R2_2026-10-26.xlsx` (103 rows).
+- **Pre-2000 sensitivity check, title/abstract (2026-10-26).** The first author's blind check of 56 rows agreed with AI_CC_01 on 89.3% of decisions (κ 0.73).
+  - Of the 12 AI exclusions in the sample (10 random plus Lovins and Dawson), the first author advanced none.
+  - In 6 records the AI said UNCERTAIN and the first author said exclude: Porter 1980, Khoja 1999 and others.
+  - Under the either-reviewer rule, 44 pre-2000 records advance to full text. Files: `11_citation_chasing/results_pre2000_2026-10-26/`.
+- **Pre-2000 full texts (2026-10-26).** 17 of the 44 advanced records were obtained as open copies. AI_FT_01 reviewed them with the date ignored. Its decisions are sealed in the private data repository (`_KEY_do_not_open_before_finishing`) until reviewer 2 returns the blind workbook `11_citation_chasing/fulltext/pre2000/PRE2000_FT_REVIEW_BLIND_R2_2026-10-26.xlsx`. 27 records still have no full text.
+  - *Redacted 2026-11-01:* an earlier unpushed draft of this paragraph named the AI decisions; they were moved to the private repository to keep reviewer 2 blind.
+- **Citation chasing, full text, reviewer 2 (2026-10-26).** U.M. Lutfullaev returned 103 rows: 54 include, 45 exclude, 4 wrong file.
+  - Against AI_FT_01: 86/98 decided records agree (87.8%), κ 0.76 (95% CI 0.62–0.88).
+  - 17 records need adjudication: 12 include/exclude disagreements, 4 wrong files, CP0357. Another 9 differ only in the exclusion code.
+  - 8 of the disagreements concern subword indexing units in Chinese or speech retrieval (characters, syllables, phones, letter trigrams). This needs a rule decision.
+  - Adjudication workbook: `11_citation_chasing/fulltext/CC_FT_DISAGREEMENTS_FOR_ADJUDICATION_2026-10-26.xlsx`.
+
+## Update 2026-11-01 — adjudication in progress; project moved to a new computer
+Recorded with AI assistance (Claude).
+- **Adjudication of citation-chasing full-text disagreements (first author), 2026-10-26.** Two of four steps are done. The decisions are in the private log `11_citation_chasing/fulltext/results_2026-10-26/FIRSTAUTHOR_ADJUDICATION_LOG_2026-10-26.csv` (15 lines).
+  - **Step 1 — RULE-CC-01:** subword indexing units (characters, syllables, phones, letter n-grams) count as a morphological intervention (gate B) only when used to handle word-form variation. Chinese character/syllable units and speech subword units for segmentation, ASR or OOV are FT2. Applied to 8 records: 7 EXCLUDE FT2, 1 INCLUDE (CCN001, DSSM letter trigrams, weak evidence).
+  - **Step 2:** 5 records excluded in agreement with reviewer 2 (CC0008 FT2, CC0177 FT2, CP0279 FT2, CP0505 FT1, CP0357 FT1).
+  - **Step 3 (next):** 4 records where reviewer 2 found the wrong file (CC0030, CC0145, CC0200, CP0501). The correct texts must be obtained; if they cannot be obtained, code FT7.
+  - **Step 4:** 9 records where both reviewers excluded and only the exclusion code differs.
+- **Where the data lives.** Record-level data is in the private repository `Shoxrux2017/phd-uzbek-hybrid-retrieval-data`, cloned into `artifacts/`. Copyrighted full texts (PDF/PS) and large corpora are not in any repository; they were moved by an offline archive (see `HANDOFF.md`). This supersedes the "Local data" section above.
+- **Handoff:** `HANDOFF.md` (public, how to resume) and `artifacts/HANDOFF_PRIVATE_2026-11-01.md` (private, record-level next steps).

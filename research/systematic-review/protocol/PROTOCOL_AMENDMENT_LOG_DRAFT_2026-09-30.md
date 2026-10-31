@@ -323,6 +323,17 @@ Type: **M** = methodological deviation/amendment; **O** = omission (a required s
 - **Reruns required:** none.
 - **Records affected:** none.
 
+### AMD-R24 (A, documented prospectively 2026-10-03) — Rationale for the 2000 lower bound; pre-2000 sensitivity check added
+- **Decision date:** 2026-10-03. Decided by the first author (option A), after an AI-assisted check of review guidance and of practice in comparable reviews.
+- **Trigger:** citation chasing (§6.4) identified 470 pre-2000 records. Some of them appear eligible except for their date, among them Hull 1996, Kraaij & Pohlmann 1996, Popovič & Willett 1992 and al-Kharashi & Evens 1994. §5 gave no event-based justification for the year 2000.
+- **Old rule (§5):** window 2000–2026; pre-2000 landmark works may be cited only as background.
+- **New rule:** the window is unchanged. The lower bound is now justified by the start of shared non-English evaluation campaigns (CLEF 2000; TREC-2001 Arabic), which make results comparable across studies. A pre-specified sensitivity check is added for pre-2000 studies that are eligible except for date and were found by citation chasing: blind dual title/abstract screening, then full-text assessment with criteria A/B/C, minimal extraction, and a narrative comparison with the RQ1 findings. These studies are not pooled and do not change the main counts.
+- **Scientific reason:** Cochrane ch. 4 requires date limits to be reported and justified. The check makes visible whether the cut-off changes any conclusion.
+- **Affected sources:** citation-chasing arm only. No database search is rerun.
+- **Reruns required:** none.
+- **Records affected:** 467 unique pre-2000 records (AI: 15 INCLUDE, 29 UNCERTAIN, 423 EXCLUDE). The first author's blind check is pending.
+- **Documented in:** `research/systematic-review/protocol/TIME_WINDOW_RATIONALE_AND_PRE2000_SENSITIVITY_2026-10-03.md`; `SR/11_citation_chasing/`.
+
 ### Pending, not yet deviations (listed so they are not forgotten)
 - **§24 update search:** mandatory before submission. Log it as AMD-U01 when executed: rerun date, new ACL commit, new records.
 - **§4 PRISMA-S / final PRISMA flow:** the "other methods" arm is needed once AMD-R17/R18 are resolved.
