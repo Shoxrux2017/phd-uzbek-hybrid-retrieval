@@ -196,3 +196,22 @@ Recorded with AI assistance (Claude).
   - **Step 4:** 9 records where both reviewers excluded and only the exclusion code differs.
 - **Where the data lives.** Record-level data is in the private repository `Shoxrux2017/phd-uzbek-hybrid-retrieval-data`, cloned into `artifacts/`. Copyrighted full texts (PDF/PS) and large corpora are not in any repository; they were moved by an offline archive (see `HANDOFF.md`). This supersedes the "Local data" section above.
 - **Handoff:** `HANDOFF.md` (public, how to resume) and `artifacts/HANDOFF_PRIVATE_2026-11-01.md` (private, record-level next steps).
+
+## Update 2026-11-02 — citation chasing complete; extraction; Clarification 002; pre-2000 check
+Recorded with AI assistance (Claude). Record-level files are in the private repository (`artifacts/`), commits `c1f5756` and `1b3f4bf`.
+- **Adjudication finished (first author).**
+  - Step 3: CC0200 — the open CLEF 2001 Working Notes version was accepted as the full text and re-reviewed by AI_FT_01 and reviewer 2 (both: include). CC0030, CC0145, CP0501 — FT7 (only wrong files/slides obtainable).
+  - Step 4: the 9 code-only differences were resolved by the first-failed-gate rule.
+- **Citation-chasing result.** 127 reports sought; 27 not retrieved; 100 assessed; 52 excluded (FT1 4, FT2 28, FT3 15, FT6 5); **48 included = 43 new studies + 5 additional reports** of included studies (CC0028→CR000561; CC0176→CR002198; CC0203→CR000502; CC0375→CR000447; CC0248→CR000452/CR000495/CR000504/CP0603). Linkage was checked against tables and numbers (`LINKAGE_CHECK_2026-11-02.md`).
+- **Merge found during the linkage check:** CR000688 and CR002185 report the same study (identical tables); CR000688 retained. Database arm: **112 studies**.
+- **Extraction** (AI_EX_01, 60 fields, codebook v1.0) of the 43 new studies; blind retest of 5 (AI_EX_RT): core fields 65/65 (100%), all 38 categorical fields 88.9%.
+- **Extraction Clarification 002** (post hoc, first author): query-time conflation scored as one term (#syn, synonym sets, equivalence classes) counts as the corresponding representation; separate-term query expansion does not (explicitly including FCG grouped with #syn and Boolean OR/truncation). An AI audit of all 58 studies with query-side processing recoded 9 studies and flagged 7 as mechanism unclear; all changes are logged.
+- **Current totals: 157 studies (167 reports).** Dense channel 15; lexical+dense hybrid 2; Turkic 16; Uzbek 2; per-query quantitative analysis 57; unique-hit analysis 2; channel overlap 1; oracle/upper bound 6. Files: `08_publication/PRISMA_COUNTS_2026-11-02.md`, `DESCRIPTIVE_COUNTS_2026-11-02.json`, `07_full_text/extraction/FULL_TEXT_EXTRACTION_FINAL_INCLUDED_2026-11-02.csv`.
+- **Pre-2000 sensitivity check (AMD-R24).** Full text of 17 open copies: AI_FT_01 vs reviewer 2 16/17 (94.1%, κ 0.88); PRE0249 adjudicated EXCLUDE FT2. **8 eligible-except-date studies** extracted; draft supplementary table `08_publication/PRE2000_SENSITIVITY_TABLE_2026-11-02.md`. 27 pre-2000 records still without full text. The narrative comparison with RQ1 waits for the Tier 3 effect table.
+- **This does not revise CURRENT_GAP v0.8 refined**: no new study reports lexical↔dense complementarity decomposition.
+- **Pending.**
+  - 4 §23 closest works (no full texts yet);
+  - reviewer 2 declaration for the citation-chasing, CC0200 and pre-2000 rounds;
+  - RoB table, certainty, gap-killer audit;
+  - Tier 3 effect table (RQ1) and synthesis;
+  - manuscript numbers; update search (§24) before submission.

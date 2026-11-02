@@ -1,6 +1,6 @@
 # Current PhD State
 
-**Last updated:** 2026-09-28
+**Last updated:** 2026-11-02 (systematic-review status only; research sections unchanged since 2026-09-28)
 **Status:** working research state; not final dissertation state.
 
 ## Topic
@@ -56,13 +56,11 @@
 
 The article “Morphological Representation in Information Retrieval for Morphologically Rich Languages: A Systematic Review of Lexical, Dense, and Hybrid Retrieval with an Uzbek Perspective” primarily targets **ACM TALLIP**.
 
-- Systematic search/identification and deduplication: **complete**.
-- Raw records: **2224**; duplicates removed: **214**; entered title/abstract screening: **2010**.
-- Primary title/abstract screening: **complete**; **256 INCLUDE / 1111 EXCLUDE / 643 UNCERTAIN**.
-- Primary screening was **AI-assisted**, not independent dual-human screening.
-- Frozen random second-review sample: **402**.
-- Actual second review: **NOT STARTED** at this checkpoint.
-- Full-text retrieval/screening: **NOT STARTED**.
+- Searches, deduplication, title/abstract and full-text screening (dual review: AI + second human reviewer, first-author adjudication), national search, author contact and citation chasing (§6.4): **complete**.
+- **157 included studies (167 reports)** as of 2026-11-02: 112 from databases, 1 national search (Uzbek), 1 author contact, 43 citation chasing.
+- Tier 2 extraction (60 fields, codebook v1.0 + Clarifications 001–002): **complete** for all 157; AI-assisted with blind retests.
+- Pre-2000 sensitivity check (AMD-R24): 8 eligible-except-date studies extracted; comparison pending.
+- Pending: 4 §23 closest works (no full texts), RoB/certainty, Tier 3 effect table (RQ1), synthesis, manuscript numbers.
 
 Details: [Systematic Review State](research/SYSTEMATIC_REVIEW_STATE.md).
 
