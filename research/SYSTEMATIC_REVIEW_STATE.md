@@ -215,3 +215,106 @@ Recorded with AI assistance (Claude). Record-level files are in the private repo
   - RoB table, certainty, gap-killer audit;
   - Tier 3 effect table (RQ1) and synthesis;
   - manuscript numbers; update search (§24) before submission.
+
+## Update 2026-11-03 — Tier 3 effect table (RQ1) built and verified
+Recorded with AI assistance (Claude). Record-level files are in the private repository (`artifacts/systematic-review-v1.0/07_full_text/tier3_effects/`; check workbook in `09_human_verification/tier3_effects/`).
+- **Reviewer 2 declaration** for the citation-chasing, CC0200 and pre-2000 rounds recorded (`11_citation_chasing/fulltext/results_2026-11-02/REVIEWER_2_DECLARATION_2026-11-02.md`), with an addendum to the 290-round declaration.
+- **Closest works (§23):** 3 of 4 full texts obtained (U-RR² not retrievable, FT7); AI_FT_01 and reviewer 2 (blind) both INCLUDE all 3 (CW_ABOASAL, Arabic legal; CW_GREEKBAR, Greek statutes; CW_MUNETSI, Shona — borderline: morphology only through a qualitative error analysis, which criterion B lists). Extracted (AI_EX_01; blind retest of CW_ABOASAL 37/38 fields, core 13/13). **Totals: 160 studies (170 reports)**; dense channel 18; hybrid 4; 38 languages (`PRISMA_COUNTS_2026-11-03.md`, `DESCRIPTIVE_COUNTS_2026-11-03.json`, `FULL_TEXT_EXTRACTION_FINAL_INCLUDED_2026-11-03.csv`).
+- **Amendment 4** (counts after citation chasing; operational rules B1–B6 for the effect table) agreed by the first author on 2026-11-03, 13:51 (UTC+5), before any row was built.
+- **Effect table** `EFFECT_COMPARISONS_2026-11-03.csv`: 135 studies with ≥ 2 representations, 517 rows (509 comparisons from 127 studies; 8 studies without an eligible pair); the 2 closest works with a representation comparison were added as batch EF12 (4 rows, all verified OK).
+  - Extraction by AI_EF_01 (11 batches); independent verification of every row against page images by AI_EF_VER.
+  - Verification: 466 of 512 rows (91.0%) without finding; 5 value errors, none in an effect value; 41 rows departed from the written rules and were corrected; 1 missing row added. Effect values changed in 20 rows, direction in 2.
+  - Every change is logged (`TIER3_CORRECTIONS_LOG_2026-11-03.csv`); report `TIER3_VERIFICATION_REPORT_2026-11-03.md`.
+- **First-author decision (option a):** the lemma run without compound splitting is used where one exists; 34 rows tagged DECOMPOUNDING_IN_LEMMA for a sensitivity analysis; CP0603–CR000491 added as a §3 rule 6 overlap pair.
+- Rule applications beyond §3 / Amendment 4 B are recorded as an **addendum to Amendment 4** (`08_publication/SYNTHESIS_PLAN_AMENDMENTS.md`).
+- **This does not revise CURRENT_GAP v0.8 refined**: the closest works report aggregate lexical, dense and RRF-hybrid scores; CW_MUNETSI discusses qualitatively that BM25 fails on differing word forms where dense models are partly robust, but no study decomposes lexical↔dense complementarity (unique hits, overlap, per-query wins).
+- **Pending.**
+  - researcher check of a random 20% of the effect rows (103 rows) → error rate;
+  - reviewer 2 declaration for the closest-works round;
+  - RoB table, certainty, gap-killer audit;
+  - RQ1 synthesis (vote counting, SWiM, sensitivity analyses) and the pre-2000 narrative comparison;
+  - manuscript numbers; update search (§24) before submission.
+
+## Update 2026-11-05 — researcher check of the effect table and revision
+Recorded with AI assistance (Claude). Files in the private repository: `07_full_text/tier3_effects/` (`EFFECT_COMPARISONS_2026-11-05.csv`,
+`TIER3_VERIFICATION_REPORT_2026-11-05.md` §11, `TIER3_REVISION_LOG_2026-11-05.csv`, `revision_2026-11-05/`) and
+`09_human_verification/tier3_effects/`.
+- **Researcher check (§3 rule 7)** of the random 20% sample: all 103 rows checked; numbers 103/103 correct; **1 error (1.0%, 95% CI
+  0.2–5.3%)**, a significance code (CC0412); 18 rows (17.5%) with doubts about the choice rules. AI assistance in this check: to be stated.
+- **First-author decisions A1–A6, B7–B11** (2026-11-05): options chosen by score are not MAIN; variants with an extra intervention are
+  excluded when a clean one exists; runs on another collection version leave the pools; single n-gram "stemming" = STEM; Khoja in
+  CR002173 = MORPHEME; baseline = the light-normalised raw run the processed runs are built on; new flag EXTRA_OPERATION (21 rows).
+- **Revision:** 15 studies re-extracted and re-verified on page images (no value errors in revised values); table now **519 rows**
+  (135 studies); effect values changed in 45 rows; **13 directions changed** (7 in CP0566 after moving to the clean post-lem variant).
+  Tier 2: CR002173 morpheme = YES (morpheme studies 32).
+- **This does not revise CURRENT_GAP v0.8 refined.**
+- **Pending:** AI-assistance statement for the researcher check; reviewer-2 declaration for the closest-works round; RoB, certainty;
+  RQ1 synthesis and pre-2000 comparison; manuscript numbers; update search.
+
+## Update 2026-11-05 (afternoon) — RQ1–RQ3 synthesis
+Recorded with AI assistance (Claude). Files: `08_publication/synthesis_rq1/` and `08_publication/synthesis_rq2_rq3/` (private repository);
+each analysis follows a specification written and saved before the numbers were computed.
+- **RQ1 (SWiM vote counting, monolingual, unit = study × language × pair).** Every processed representation beats raw text in most units:
+  stem 93% of decisive votes (123 + / 9 −; median +14%), lemma 87% (+19%), morpheme 84% (+10%), subword 78% (+15%). Gains are largest for
+  agglutinative and root-and-pattern languages (stem +26% / +28%; lemma +37% and subword +57% in the agglutinative group) and smallest for
+  English. Stem vs lemma: no consistent direction (22 / 19; median +0.3%). Robust in all nine sensitivity analyses; weaker in studies since
+  2020 (stem 9 / 3, median +2.8%); CLIR inconsistent. Turkic studies all favour stemming; the Uzbek study: stem +20%, lemma +26%.
+- **RQ2 (18 dense/hybrid studies; 13 neural, 5 latent).** Morphology-aware lexical vs off-the-shelf dense: dense better in 5, lexical
+  better in 2, not comparable in 6; 4 hybrids (better than both components in 1). Morphology inside the dense channel: preprocessed input in
+  4 neural studies, never built into the model.
+- **RQ3 (160 studies).** Unique hits 2 studies, channel overlap 1, oracle 6 — all lexical–lexical or dense–dense; none of the 11
+  lexical–dense studies reports per-query numbers, unique hits, overlap or an oracle. **Consistent with CURRENT_GAP v0.8 refined; not revised.**
+- **Pending:** RQ4 (risk-of-bias summary, evaluation practice, Turkic/Uzbek narrative), certainty statements, pre-2000 comparison,
+  manuscript text and numbers, AI-assistance statement for the researcher check, reviewer-2 declaration (closest works), update search.
+
+## Update 2026-11-05 (evening) — RQ4 synthesis
+Recorded with AI assistance (Claude). Files: `08_publication/synthesis_rq4/` (private repository); the specification was saved before the
+RQ4 numbers were computed (RQ1–RQ3 were already known, which the specification states).
+- **Risk of bias (160 studies; no overall score).** HIGH: qrels validity 17%, baseline fairness 5%, tuning fairness 13%, reporting
+  completeness 12%; 59 studies (37%) HIGH in at least one domain; 9 (6%) LOW in all four. Reporting is the weakest domain (some concerns 64%).
+- **Evaluation practice.** Qrels from a shared benchmark 56%, built for the study 26%, not reported 11%; pool depth not stated 65%;
+  no significance test for the representation/channel comparison 49% (74% of studies since 2020); median 50 queries (181.5 since 2020);
+  code stated as available 9% (37% since 2020), data 18%.
+- **Turkic and Uzbek (16 studies, 2 Uzbek).** All 11 Turkic RAW→STEM units favour stemming; stem vs lemma splits 2 / 2 among the four
+  Turkic studies with both; dense channels in 3 (CR000481, CR001199, CC0402), no Turkic hybrid. Transferability rests on typology.
+- **Certainty (§9, descriptive; accepted by the first author 2026-11-05 13:09 with two additions: agglutinative stemming gain median +25.9%;
+  6 of the 11 Turkic studies share the Milliyet collection).** Strongest: RAW→STEM (84 studies, 93% favourable, robust, 11 Turkic
+  studies); RAW→LEMMA consistent but size partly from compound splitting; RAW→MORPHEME and RAW→SUBWORD indirect for Uzbek (no Turkic study);
+  STEM→LEMMA undecided, also for Uzbek.
+- **Gap-killer audit (CURRENT_GAP conditions 1–3).** Raw vs stem/lemma 109 studies → with a dense channel 9 → with a hybrid 2 → several
+  lexical variants fused with the same dense model 0 → lexical–dense unique hits/overlap/oracle 0. **CURRENT_GAP v0.8 refined is not revised.**
+- **Pending:** first-author acceptance of the certainty wording; pre-2000 comparison; figures and manuscript text and numbers;
+  AI-assistance statement for the researcher check; reviewer-2 declaration (closest works); update search (§24), which repeats the audit.
+
+## Update 2026-11-05 (evening) — pre-2000 sensitivity check (AMD-R24)
+Recorded with AI assistance (Claude). Files: `08_publication/synthesis_pre2000/` (private repository); specification saved before the
+comparison; replaces the informal draft table of 2026-11-02.
+- **Effect rows** for the 8 eligible-except-date studies built with the Tier 3 rules (21 rows; Xu & Croft 1998 has no raw baseline) and
+  checked by an independent AI verifier on the page images: all numbers correct; 11 rows corrected (mainly Krovetz 1993: the author's
+  algorithm "deriv" is MAIN; one STEM→LEMMA direction 0 → −), 1 row added (Cleverdon 1966, 1400 documents, not determinable).
+- **Votes (9 units):** RAW→STEM 5 + / 1 − (English small gains, Italian +128%, Dutch Porter index −3.3% n.s.); RAW→LEMMA 1 +; STEM→LEMMA 1 −;
+  RAW→SUBWORD 1 + (figure). **No RQ1 conclusion would change** (what-if only; main counts unchanged).
+- **Per-query analyses** (Harman 1987; Jing & Tzoukermann 1999; Kraaij & Pohlmann 1996; Xu & Croft 1998): stemming helps some queries and
+  hurts others — documented since 1987, lexical–lexical only. **CURRENT_GAP v0.8 refined is not revised.**
+- **Limitation:** mostly English, no agglutinative or root-and-pattern language; the 27 records not retrieved include 9 Arabic studies and
+  the only Turkish one (PRE0225, 1994), so the check adds no evidence for agglutinative languages or Uzbek.
+- **Accepted by the first author:** RQ4 certainty wording (2026-11-05 13:09) and the pre-2000 comparison text (13:13, one change).
+- **Pending:** figures; manuscript text and numbers;
+  AI-assistance statement for the researcher check; reviewer-2 declaration (closest works); missing texts; update search (§24).
+
+## Update 2026-11-05 (evening) — figures and tables for the manuscript
+Recorded with AI assistance (Claude). Files: `08_publication/figures/` (private repository), list and draft captions in
+`FIGURES_AND_TABLES_PLAN_2026-11-05.md`. Built at journal size (12.7–14 cm wide, PDF + 600 dpi PNG): Fig. 1 PRISMA 2020 flow (160 studies,
+170 reports), Fig. 2 studies by year and channel, Fig. 3 RQ1 effect direction, Fig. 4 RQ3 evidence map, Fig. 5 RoB summary, Fig. S1 RoB
+per study; tables: neural dense/hybrid studies (13), Turkic and Uzbek studies (16), characteristics of the 160 studies (supplement).
+- **Found missing:** the characterisation of the reports not retrieved (FT7), required by SYNTHESIS_PLAN §10, has not been done.
+- **Done 2026-11-05 (evening):** FT7 characterisation (`08_publication/ft7_characterisation/`; specification saved before computing).
+  Database arm, 218 not retrieved vs 291 retrieved: IEEE Xplore-only 69% vs 31% (access, not content); title/abstract label and neural
+  vocabulary balanced; at the same inclusion rate about 84 would have been included (116 included). 32 not-retrieved reports from 2020
+  onwards use neural vocabulary, incl. two Turkish RAG/embedding studies (CR001149, CR001170) and an Uzbek one (CR001179); 14 not-retrieved
+  reports across all arms mention a Turkic language. RQ3 holds for the retrieved literature only. Interpretation: draft for the first author.
+- **Academia.edu e-mail check (2026-11-05, first author's request):** 630 notification e-mails read through the Gmail connector;
+  239 distinct papers: 19 already in the review (7 included, 12 excluded at full text), none of the FT7 reports, no new eligible study
+  (`13_other_sources/academia_emails_2026-11-05/`). PRISMA counts unchanged.
+- **Pending:** first-author acceptance of the FT7 interpretation; obtaining priority FT7 reports (2020+ neural, Turkic); reference column of Table S1; PRISMA checklist; manuscript text and numbers; AI-assistance statement
+  for the researcher check; reviewer-2 declaration (closest works); missing texts; update search (§24).

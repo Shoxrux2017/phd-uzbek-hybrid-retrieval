@@ -65,8 +65,11 @@
 - «взаимодополняемость lexical и semantic retrieval сама по себе ранее не исследовалась»;
 - «выбор или взвешивание морфологического варианта лексического канала отдельно для каждого запроса (query-dependent stemming/normalization) — новая идея» (занято: Paik et al., 2013, ACM TOIS — MORPH-034);
 - «комбинация двух морфологических представлений лексического канала (например, morphs + lemmas или raw + stem) — новая идея» (занято: Turunen, 2012 — MORPH-025; Fidan, 2012 — MORPH-024).
+- «для тюркских языков стеммированный BM25 не сравнивали с современными моделями плотного поиска и гибридом» (занято для казахского: Seidalin, 2026 — BM25 raw vs stem, три zero-shot dense-модели и RRF-гибрид стеммированного BM25 с Granite на одном наборе из 300 запросов; Kalzhanov et al., 2026 — BM25 vs dense vs weighted RRF hybrid в казахском RAG. Ни одна из этих работ не строит гибрид с raw-каналом, не сравнивает леммы и не измеряет unique hits / overlap / oracle, поэтому условие 3 в «What can still kill this gap» не выполнено).
 
 *Список дополнен 2026-09-28 по итогам deep-dive пакета из 41 работы ([сводка](../literature/DEEP_DIVES_BATCH_2026-09-28_SUMMARY.md)); формулировка v0.8 refined не менялась.*
+
+*Дополнено 2026-11-05 по итогам gap-killer проверки работы Seidalin 2026 (найдена после evidence cut-off при дополнительном поиске с ИИ; полный текст прочитан); формулировка v0.8 refined не менялась. См. [GAP_HISTORY](GAP_HISTORY.md).*
 
 ## Evidence boundary
 
@@ -201,6 +204,7 @@ Gap необходимо пересмотреть снова, если новы�
 - GreekBarRetrieval — **C** while it remains an arXiv preprint in the project evidence hierarchy.
 - Aboasal et al. — **B**; current project card is intentionally limited to what is verified from official metadata/abstract where full methods were not recovered.
 - UPERF — **B**; full paper inspected, but the main evaluation is Recall@5 and inferential significance details are unclear.
+- Seidalin 2026 (Kazakh, Zenodo preprint, DOI 10.5281/zenodo.20605663) — **C**: preprint without peer review, single author, conflict of interest (the author developed the evaluated stemmer); full text read 2026-11-05.
 
 ## Current stopping decision
 

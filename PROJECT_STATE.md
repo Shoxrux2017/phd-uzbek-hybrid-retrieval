@@ -1,6 +1,6 @@
 # Current PhD State
 
-**Last updated:** 2026-11-02 (systematic-review status only; research sections unchanged since 2026-09-28)
+**Last updated:** 2026-11-03 (systematic-review status only; research sections unchanged since 2026-09-28)
 **Status:** working research state; not final dissertation state.
 
 ## Topic
@@ -57,10 +57,13 @@
 The article “Morphological Representation in Information Retrieval for Morphologically Rich Languages: A Systematic Review of Lexical, Dense, and Hybrid Retrieval with an Uzbek Perspective” primarily targets **ACM TALLIP**.
 
 - Searches, deduplication, title/abstract and full-text screening (dual review: AI + second human reviewer, first-author adjudication), national search, author contact and citation chasing (§6.4): **complete**.
-- **157 included studies (167 reports)** as of 2026-11-02: 112 from databases, 1 national search (Uzbek), 1 author contact, 43 citation chasing.
-- Tier 2 extraction (60 fields, codebook v1.0 + Clarifications 001–002): **complete** for all 157; AI-assisted with blind retests.
+- **160 included studies (170 reports)** as of 2026-11-03: 112 from databases, 1 national search (Uzbek), 1 author contact, 43 citation chasing, 3 §23 closest works.
+- Tier 2 extraction (60 fields, codebook v1.0 + Clarifications 001–002): **complete** for all 160; AI-assisted with blind retests.
 - Pre-2000 sensitivity check (AMD-R24): 8 eligible-except-date studies extracted; comparison pending.
-- Pending: 4 §23 closest works (no full texts), RoB/certainty, Tier 3 effect table (RQ1), synthesis, manuscript numbers.
+- Tier 3 effect table (RQ1): **built, AI-verified and researcher-checked** — 135 studies, 519 rows (`EFFECT_COMPARISONS_2026-11-05.csv`); researcher 20% check: 103 rows, 1 error (1.0%); 18 rule doubts resolved by first-author decisions and a re-verified revision of 15 studies.
+- Synthesis (2026-11-05): RQ1–RQ3 done (`08_publication/synthesis_rq1/`, `synthesis_rq2_rq3/`); RQ4 done (`08_publication/synthesis_rq4/`: risk of bias, evaluation practice, Turkic/Uzbek studies, certainty criteria, gap-killer audit — no included study meets the CURRENT_GAP kill conditions).
+- Pre-2000 sensitivity check (AMD-R24) done (`08_publication/synthesis_pre2000/`): 9 units from 7 studies, no RQ1 conclusion changes; no agglutinative language among the retrieved pre-2000 texts.
+- Pending: first-author acceptance of the draft wording (RQ4 certainty, pre-2000 comparison), figures, manuscript numbers, update search.
 
 Details: [Systematic Review State](research/SYSTEMATIC_REVIEW_STATE.md).
 
